@@ -1,8 +1,9 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  // entry: path.resolve(__dirname, 'src/index.js'),
+  // entry: path.resolve(__dirname, 'src/index.jsx'),
   module: {
     rules: [
       {
@@ -16,11 +17,13 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
-    static: {
-      directory: path.join(),
-    },
     historyApiFallback: {
       index: 'index.html',
     },
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'public/index.html',
+    }),
+  ],
 };
