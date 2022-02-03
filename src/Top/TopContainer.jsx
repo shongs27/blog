@@ -1,6 +1,6 @@
-import Nav from './Nav';
+import Header from './Header';
 import Title from './Title';
-import Header from './Title';
+import Nav from './Nav';
 
 export default function TopContainer() {
   return (
