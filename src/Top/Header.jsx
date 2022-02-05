@@ -7,6 +7,8 @@ import {
   faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { Link } from 'react-router-dom';
+
 export default function Header() {
   return (
     <>
@@ -21,7 +23,9 @@ export default function Header() {
         }}
       >
         <div className="header-home" style={{ marginRight: '20px' }}>
-          <FontAwesomeIcon icon={faHome} />
+          <Link to="/">
+            <FontAwesomeIcon icon={faHome} />
+          </Link>
         </div>
 
         <div className="header-resume" style={{ marginRight: '20px' }}>

@@ -1,15 +1,21 @@
-import TopContainer from './Top/TopContainer';
+import TopContainer from './top/TopContainer';
 
-import Main from './Middle/Main';
-import Footer from './Bottom/Footer';
+import MainPage from './main/MainPage';
+
+import { Routes, Route } from 'react-router-dom';
+
+function NotPage() {
+  return <div>not페이지 입니다</div>;
+}
 
 export default function App() {
   return (
     <>
       <TopContainer />
-      <div>{/* 라우터가 될 스위치 부분 */}</div>
-      <Main />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/not" element={<NotPage />} />
+      </Routes>
     </>
   );
 }
