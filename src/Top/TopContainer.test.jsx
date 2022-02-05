@@ -1,15 +1,8 @@
-import {
-  queryAllByRole,
-  queryByAttribute,
-  render,
-  screen,
-} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import TopContainer from './TopContainer';
 
 import { mainTitle } from '../../fixture/title';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /* Header Nav Title이 잘보이고 결합되어있는가 
 하나씩만 점검하자
@@ -35,9 +28,9 @@ describe('TopContainer', () => {
     expect(container).toHaveTextContent(mainTitle);
   });
 
-  // it('render <Nav />', () => {
-  //   const { container } = renderContainer();
+  it('render <Nav />', () => {
+    const { container } = renderContainer();
 
-  //   expect(container).toHaveTextContent(/Home/);
-  // });
+    expect(container).toHaveTextContent(/Home/);
+  });
 });
