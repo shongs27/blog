@@ -9,11 +9,11 @@ import {
 
 import { Link } from 'react-router-dom';
 
-export default function Header() {
+export default function HeaderBar() {
   return (
     <>
       <div
-        className="left-header"
+        className="left-HeaderBar"
         style={{
           display: 'flex',
           height: '5vh',
@@ -22,30 +22,30 @@ export default function Header() {
           fontWeight: 'bold',
         }}
       >
-        <div className="header-home" style={{ marginRight: '20px' }}>
+        <div className="HeaderBar-home" style={{ marginRight: '20px' }}>
           <Link to="/">
             <FontAwesomeIcon icon={faHome} />
           </Link>
         </div>
 
-        <div className="header-resume" style={{ marginRight: '20px' }}>
+        <div className="HeaderBar-resume" style={{ marginRight: '20px' }}>
           <FontAwesomeIcon icon={faFile} />
           <span> 소개</span>
         </div>
 
-        <div className="header-game" style={{ marginRight: '20px' }}>
+        <div className="HeaderBar-game" style={{ marginRight: '20px' }}>
           <FontAwesomeIcon icon={faGamepad} />
           <span> 게임</span>
         </div>
 
-        <div className="header-board" style={{ marginRight: '20px' }}>
+        <div className="HeaderBar-board" style={{ marginRight: '20px' }}>
           <FontAwesomeIcon icon={faChalkboardTeacher} />
           <span> 방명록</span>
         </div>
       </div>
 
       <div
-        className="right-header"
+        className="right-HeaderBar"
         style={{
           display: 'flex',
           position: 'fixed',

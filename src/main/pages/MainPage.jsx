@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Footer from '../Footer/FooterContainer';
+import Footer from '../../Footer/FooterContainer';
 
 const Container = styled.div({
   width: '90%',
@@ -11,7 +11,7 @@ const Container = styled.div({
 export default function MainPage() {
   return (
     <Container>
-      <span>본문</span> <Footer />
+      <span>전체</span> <Footer />
     </Container>
   );
 }

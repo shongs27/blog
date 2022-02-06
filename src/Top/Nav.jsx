@@ -3,6 +3,9 @@ import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
+import { navList, navAddress } from '../../fixture/navList';
+import { Link } from 'react-router-dom';
+
 const List = styled.ul({
   display: 'flex',
   justifyContent: 'center',
@@ -10,38 +13,43 @@ const List = styled.ul({
 
   borderTop: '1px solid black',
   borderBottom: '1px solid black',
+});
 
-  '& li': {
-    marginRight: '1em',
+const Item = styled.li({
+  marginRight: '1em',
+  padding: '.7em 0',
+
+  '& a': {
     fontSize: '1.5em',
-    padding: '.5em 0',
+    textDecoration: 'none',
+
     '&:hover': {
       fontWeight: 'bold',
       borderBottom: '3px solid blue',
-      paddingBottom: '9px',
+      paddingBottom: '8px',
     },
   },
 });
 
 //오른쪽에 어떻게 위치하는가?
 const Test = styled.div({
-  position: 'absolute',
-  right: '1em',
+  display: 'flex',
+  justifyContent: 'center',
+  alignContent: 'center',
 });
 
 export default function Nav() {
   return (
-    <div>
+    <Test>
       <List>
-        <li>Home</li>
-        <li>About</li>
-        <li>News</li>
-        <li>Contact</li>
+        {navList.map((nav, i) => (
+          <Item key={i}>
+            <Link to={navAddress[i]}>{nav}</Link>
+          </Item>
+        ))}
       </List>
 
-      <Test>
-        <FontAwesomeIcon icon={faSearch} />
-      </Test>
-    </div>
+      <FontAwesomeIcon icon={faSearch} />
+    </Test>
   );
 }

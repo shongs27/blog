@@ -1,8 +1,9 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import App from './App';
 
 import { MemoryRouter } from 'react-router-dom';
+import { navList, navAddress } from '../fixture/navList';
 
 describe('App', () => {
   function renderPage(path) {
@@ -13,15 +14,11 @@ describe('App', () => {
     );
   }
 
-  it('renders MainPage', () => {
-    const { container } = renderPage('/');
+  it('renders router Pages', () => {
+    navList.forEach((navName, i) => {
+      const { container } = renderPage(navAddress[i]);
 
-    expect(container).toHaveTextContent('본문');
-  });
-
-  it('renders NotPage', () => {
-    const { container } = renderPage('/not');
-
-    expect(container).toHaveTextContent('not');
+      expect(container).toHaveTextContent(navName);
+    });
   });
 });

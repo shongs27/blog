@@ -4,6 +4,8 @@ import TopContainer from './TopContainer';
 
 import { mainTitle } from '../../fixture/title';
 
+import { MemoryRouter } from 'react-router-dom';
+
 /* Header Nav Title이 잘보이고 결합되어있는가 
 하나씩만 점검하자
 1. Header 글자, 이미지(?) 보이는가
@@ -12,7 +14,11 @@ import { mainTitle } from '../../fixture/title';
 */
 describe('TopContainer', () => {
   function renderContainer() {
-    return render(<TopContainer />);
+    return render(
+      <MemoryRouter>
+        <TopContainer />
+      </MemoryRouter>
+    );
   }
 
   it('render <Header />', () => {

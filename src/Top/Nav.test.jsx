@@ -2,13 +2,19 @@ import { render } from '@testing-library/react';
 
 import Nav from './Nav';
 
-describe('Nav', () => {
-  it('render Nav menus', () => {
-    const { getByText } = render(<Nav />);
+import { navList } from '../../fixture/navList';
+import { MemoryRouter } from 'react-router-dom';
 
-    expect(getByText(/Home/)).not.toBeNull();
-    expect(getByText(/About/)).not.toBeNull();
-    expect(getByText(/News/)).not.toBeNull();
-    expect(getByText(/Contact/)).not.toBeNull();
+describe('Nav', () => {
+  it('renders Nav Menus', () => {
+    const { container } = render(
+      <MemoryRouter>
+        <Nav />
+      </MemoryRouter>
+    );
+
+    navList.forEach((navName) => {
+      expect(container).toHaveTextContent(navName);
+    });
   });
 });
