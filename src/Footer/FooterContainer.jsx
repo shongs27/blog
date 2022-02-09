@@ -5,6 +5,8 @@ import FooterBar from './FooterBar';
 
 const Container = styled.div({
   borderTop: '1px solid black',
+
+  height: 'calc(100% - 80px)',
 });
 
 export default function FooterContainer() {

@@ -2,7 +2,7 @@ export default function FooterBar() {
   return (
     <div
       style={{
-        minHeight: '60px',
+        minHeight: '45px',
         backgroundColor: '#f0f0f0',
         display: 'flex',
         flexDirection: 'column',

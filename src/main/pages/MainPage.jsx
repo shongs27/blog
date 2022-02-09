@@ -1,17 +1,20 @@
-import styled from '@emotion/styled';
-import Footer from '../../Footer/FooterContainer';
+import { useEffect } from 'react';
 
-const Container = styled.div({
-  width: '90%',
-  margin: '0 auto',
+import PageField from '../PageField';
 
-  // minHeight: 'calc(100vh - 340px)',
-});
+import { useSelector, useDispatch } from 'react-redux';
+import { getPageContents } from '../../actions';
 
-export default function MainPage() {
-  return (
-    <Container>
-      <span>전체</span> <Footer />
-    </Container>
-  );
+function MainPage() {
+  const dispatch = useDispatch();
+  //useSelector는 언제 변하는가?
+  const mainPageContents = useSelector((state) => state.pages.main);
+
+  useEffect(() => {
+    dispatch(getPageContents('main'));
+  }, []);
+
+  return <PageField articleTitle="전체글" pageContents={mainPageContents} />;
 }
+
+export default MainPage;

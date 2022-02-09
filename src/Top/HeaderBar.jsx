@@ -58,7 +58,7 @@ export default function HeaderBar() {
         }}
       >
         <span> Hong WonBae </span>
-        <img src="../../assets/hongs.jpg" alt="홍원배" width="35" height="35" />
+        <img src="img/hongs.jpg" alt="홍원배" width="35" height="35" />
         <FontAwesomeIcon icon={faSearch} />
       </div>
     </>

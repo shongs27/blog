@@ -1,55 +1,58 @@
-import styled from '@emotion/styled';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { navList, navAddress } from '../../fixture/navList';
 import { Link } from 'react-router-dom';
 
-const List = styled.ul({
+import { navList, navAddress } from '../../fixture/navList';
+
+import styled from '@emotion/styled';
+const Container = styled.div({
+  position: 'relative',
+
   display: 'flex',
   justifyContent: 'center',
-  listStyle: 'none',
+  alignContent: 'center',
 
+  //emotion 강의에서 희미한 회색 찾기 #333인가?
   borderTop: '1px solid black',
   borderBottom: '1px solid black',
-});
 
-const Item = styled.li({
-  marginRight: '1em',
-  padding: '.7em 0',
+  '& ul': {
+    listStyle: 'none',
 
-  '& a': {
-    fontSize: '1.5em',
-    textDecoration: 'none',
+    '& a': {
+      textDecoration: 'none',
+      color: 'black',
 
-    '&:hover': {
-      fontWeight: 'bold',
-      borderBottom: '3px solid blue',
-      paddingBottom: '8px',
+      '&:hover': {
+        fontWeight: 'bold',
+        borderBottom: '1px solid blue',
+      },
     },
   },
 });
 
-//오른쪽에 어떻게 위치하는가?
-const Test = styled.div({
-  display: 'flex',
-  justifyContent: 'center',
-  alignContent: 'center',
+const Span = styled.span({
+  position: 'absolute',
+  right: '2px',
+  textAlign: 'center',
+  lineHeight: '3.5',
 });
 
 export default function Nav() {
   return (
-    <Test>
-      <List>
-        {navList.map((nav, i) => (
-          <Item key={i}>
-            <Link to={navAddress[i]}>{nav}</Link>
-          </Item>
-        ))}
-      </List>
+    <Container>
+      {navList.map((navName, i) => (
+        <ul key={i}>
+          <li>
+            <Link to={navAddress[i]}>{navName}</Link>
+          </li>
+        </ul>
+      ))}
 
-      <FontAwesomeIcon icon={faSearch} />
-    </Test>
+      <Span>
+        <FontAwesomeIcon icon={faSearch} />
+      </Span>
+    </Container>
   );
 }
