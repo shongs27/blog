@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { mainTitle, subtitle } from '../../fixture/title';
+import { mainTitle, subtitle } from '../../../fixture/title';
 
 const Section = styled.section({
   '& h1, & h3': {

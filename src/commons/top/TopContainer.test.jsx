@@ -4,8 +4,8 @@ import TopContainer from './TopContainer';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import { mainTitle } from '../../fixture/title';
-import { navList } from '../../fixture/navList';
+import { mainTitle } from '../../../fixture/title';
+import { navList } from '../../../fixture/navList';
 
 /* Header Nav Title이 잘보이고 결합되어있는가 
 하나씩만 점검하자

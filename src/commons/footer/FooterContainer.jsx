@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import RecentPost from './section/RecentPost';
+import RecentPost from './RecentPost';
 import FooterBar from './FooterBar';
 
 const Container = styled.div({

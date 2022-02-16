@@ -1,14 +1,11 @@
-import PagesContainer from './main/PagesContainer';
-import HeaderBar from './top/HeaderBar';
-
-import { Provider } from 'react-redux';
-import store from './store';
+import PagesContainer from './PagesContainer';
+import HeaderBar from './commons/top/HeaderBar';
 
 export default function App() {
   return (
-    <Provider store={store}>
+    <>
       <HeaderBar />
       <PagesContainer />
-    </Provider>
+    </>
   );
 }
