@@ -1,4 +1,16 @@
-import { fetchPageContents, fetchPageDetail } from './services/api';
+import {
+  fetchPageContents,
+  fetchPageDetail,
+  fetchPopularPosts,
+  fetchRecentPosts,
+} from './services/api';
+
+export function setPageContents(pageName, pageContents) {
+  return {
+    type: 'setPageContents',
+    payload: { pageName, pageContents },
+  };
+}
 
 export function getPageContents(category) {
   return async (dispatch) => {
@@ -9,10 +21,10 @@ export function getPageContents(category) {
   };
 }
 
-export function setPageContents(pageName, pageContents) {
+export function setPageDetail(pageDetail) {
   return {
-    type: 'setPageContents',
-    payload: { pageName, pageContents },
+    type: 'setPageDetail',
+    payload: { pageDetail },
   };
 }
 
@@ -26,9 +38,33 @@ export function getPageDetail(params) {
   };
 }
 
-export function setPageDetail(pageDetail) {
+export function setRecentPosts(recentPosts) {
   return {
-    type: 'setPageDetail',
-    payload: { pageDetail },
+    type: 'setRecentPosts',
+    payload: { recentPosts },
+  };
+}
+
+export function setPopularPosts(popularPosts) {
+  return {
+    type: 'setPopularPosts',
+    payload: { popularPosts },
+  };
+}
+
+export function getFooterPosts() {
+  return async (dispatch) => {
+    try {
+      const [recentPosts, popularPosts] = await Promise.all([
+        fetchRecentPosts(),
+        fetchPopularPosts(),
+      ]);
+
+      dispatch(setRecentPosts(recentPosts));
+      dispatch(setPopularPosts(popularPosts));
+    } catch (error) {
+      console.log('Footer 포스트 받아오기 실패');
+      console.log(error);
+    }
   };
 }

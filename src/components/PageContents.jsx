@@ -1,12 +1,11 @@
-import { Link, Routes, Route, useParams } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
 const Article = styled.article({
-  minHeight: '50vh',
   marginBottom: '3em',
 
-  '& h3': {
+  '& h2': {
     padding: '1em 0',
     borderBottom: '1px solid rgb(230, 230, 230)',
   },
@@ -18,12 +17,12 @@ const Item = styled.div({
   paddingBottom: '22px',
 });
 
-export default function PageContents({ articleTitle, pageContents = [] }) {
+export default function PageContents({ articleTitle, pageContents }) {
   return (
     <Article id="content">
-      <h3>{articleTitle}</h3>
-      <section className="inner">
-        {pageContents.map(({ id, title, content, category }) => {
+      <h2>{articleTitle}</h2>
+      {pageContents &&
+        pageContents.map(({ id, title, content, category }) => {
           //excerpt 기능
           if (content.length > 200) {
             content = content.substring(0, 200) + '...';
@@ -39,7 +38,7 @@ export default function PageContents({ articleTitle, pageContents = [] }) {
             </Item>
           );
         })}
-      </section>
+      <Outlet />
     </Article>
   );
 }

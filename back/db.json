@@ -4,25 +4,29 @@
       "id": 1,
       "title": "props에 대하여",
       "content": "컴포넌트는 props를 통해 데이터를 전달한다",
-      "category": "home"
+      "category": "react",
+      "likes": "10"
     },
     {
       "id": 2,
       "title": "컴포넌트에 대하여",
       "content": "컴포넌트는 사실 가상으로 만들어진 DOM객체다",
-      "category": "home"
+      "category": "react",
+      "likes": "10"
     },
     {
-      "id": 3,
+      "id": 1,
       "title": "변수명의 차이",
       "content": "const, let은 변수 호이스팅이 일어나지 않는것처럼 보이지만",
-      "category": "home"
+      "category": "js",
+      "likes": "17"
     },
     {
-      "id": 4,
+      "id": 2,
       "title": "배열의 반복",
       "content": "for뿐만아니라 forEach, map을 통하여 배열의 반복을",
-      "category": "home"
+      "category": "js",
+      "likes": "200"
     }
   ],
 
@@ -31,13 +35,15 @@
       "id": 1,
       "title": "props에 대하여",
       "content": "컴포넌트는 props를 통해 데이터를 전달한다",
-      "category": "react"
+      "category": "react",
+      "likes": "10"
     },
     {
       "id": 2,
       "title": "컴포넌트에 대하여",
       "content": "컴포넌트는 사실 가상으로 만들어진 DOM객체다",
-      "category": "react"
+      "category": "react",
+      "likes": "10"
     }
   ],
 
@@ -46,13 +52,15 @@
       "id": 1,
       "title": "변수명의 차이",
       "content": "const, let은 변수 호이스팅이 일어나지 않는것처럼 보이지만",
-      "category": "js"
+      "category": "js",
+      "likes": "12"
     },
     {
       "id": 2,
       "title": "배열의 반복",
       "content": "for뿐만아니라 forEach, map을 통하여 배열의 반복을",
-      "category": "js"
+      "category": "js",
+      "likes": "10"
     }
   ]
 }

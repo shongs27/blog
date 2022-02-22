@@ -7,7 +7,7 @@ export const navList = [
   '이것저것',
 ];
 export const navAddress = [
-  '/',
+  '/home',
   '/js',
   '/react',
   '/computer',

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve",
     "test:unit": "jest --watchAll",
-    "back": "json-server ./back/db.json",
+    "back": "cd back && npm start",
     "build": "webpack --mode production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"

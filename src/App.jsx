@@ -1,11 +1,6 @@
 import PagesContainer from './PagesContainer';
-import HeaderBar from './commons/top/HeaderBar';
 
 export default function App() {
-  return (
-    <>
-      <HeaderBar />
-      <PagesContainer />
-    </>
-  );
+  // 블로그 입장 전 대문으로 꾸밀 예정
+  return <PagesContainer />;
 }

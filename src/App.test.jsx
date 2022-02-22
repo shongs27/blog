@@ -1,15 +1,22 @@
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
-import App from './App';
+import EntrancePage from './EntrancePage';
 
-describe('App', () => {
-  it('renders HeaderBar', () => {
-    const { container } = render(<App />);
+import { MemoryRouter } from 'react-router-dom';
+import { navList, navAddress } from '../fixture/navList';
 
-    expect(container).toHaveTextContent('소개');
-  });
+/*
+    1. 입구 특정 (그림, 글자)를 누르면 홈페이지로 링크가 이동한다
+*/
 
-  it('renders contentPage', () => {
-    render(<App />);
+describe('EntrancePage', () => {
+  it('Connect site to the Blog HomePage', () => {
+    const { getByText } = render(<EntrancePage />);
+
+    expect(getByText('연결')).not.toBeNull();
+
+    fireEvent.click('연결');
+
+    expect(getByText('연결')).toBeNull();
   });
 });
