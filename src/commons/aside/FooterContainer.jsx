@@ -7,13 +7,18 @@ import FooterBar from './FooterBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import { getFooterPosts } from '../../actions';
+import {
+  changeSearchField,
+  getFooterPosts,
+  getSearchTarget,
+} from '../../actions';
 import ExtraSection from './sections/ExtraSection';
 
 const Container = styled.div({
   borderTop: '1px solid rgb(230, 230, 230)',
 
-  marginTop: '60px',
+  width: '80%',
+  margin: '60px auto 0',
   minHeight: '300px',
   padding: '57px 34px 24px',
   // height: 'calc(100% - 80px)',
@@ -34,10 +39,19 @@ export default function FooterContainer() {
   const dispatch = useDispatch();
   const recentPosts = useSelector((state) => state.posts.recentPosts);
   const popularPosts = useSelector((state) => state.posts.popularPosts);
+  const searchField = useSelector((state) => state.search.searchField);
 
   useEffect(() => {
     dispatch(getFooterPosts());
   }, []);
+
+  function handleChange(searchField) {
+    dispatch(changeSearchField(searchField));
+  }
+
+  function handleSubmit() {
+    dispatch(getSearchTarget());
+  }
 
   return (
     <>
@@ -45,7 +59,11 @@ export default function FooterContainer() {
         <div>
           <RecentPosts recentPosts={recentPosts} />
           <PopularPosts popularPosts={popularPosts} />
-          <ExtraSection />
+          <ExtraSection
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            searchField={searchField}
+          />
         </div>
       </Container>
       <FooterBar popularPosts={popularPosts} />

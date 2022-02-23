@@ -3,6 +3,7 @@ import {
   fetchPageDetail,
   fetchPopularPosts,
   fetchRecentPosts,
+  fetchSearchTarget,
 } from './services/api';
 
 export function setPageContents(pageName, pageContents) {
@@ -66,5 +67,31 @@ export function getFooterPosts() {
       console.log('Footer 포스트 받아오기 실패');
       console.log(error);
     }
+  };
+}
+
+export function changeSearchField(searchField) {
+  return {
+    type: 'changeSearchField',
+    payload: { searchField },
+  };
+}
+
+export function getSearchTarget() {
+  return async (dispatch, getState) => {
+    const {
+      search: { searchField },
+    } = getState();
+    const searchTarget = await fetchSearchTarget(searchField);
+
+    dispatch(setSearchTarget(searchTarget));
+    dispatch(changeSearchField(''));
+  };
+}
+
+export function setSearchTarget(searchTarget) {
+  return {
+    type: 'setSearchTarget',
+    payload: { searchTarget },
   };
 }

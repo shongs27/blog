@@ -10,10 +10,18 @@ export const Container = styled.div({
   boxSizing: 'border-box',
 });
 
-export default function ExtraSection() {
+export default function ExtraSection({
+  handleChange,
+  handleSubmit,
+  searchField,
+}) {
   return (
     <Container>
-      <SearchSection />
+      <SearchSection
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        searchField={searchField}
+      />
       <AnalysticSection />
     </Container>
   );

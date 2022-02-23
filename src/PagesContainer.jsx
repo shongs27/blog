@@ -7,12 +7,13 @@ import ReactPage from './pages/ReactPage';
 // import AlgorithmPage from './pages/AlgorithmPage';
 // import SomethingPage from './pages/SomethingPage';
 import PageDetailContainer from './components/PageDetailContainer';
+import SearchPage from './pages/SearchPage';
 
 import HeaderBar from './commons/top/HeaderBar';
 import Title from './commons/top/Title';
 import Nav from './commons/top/Nav';
 
-import Footer from './commons/footer/FooterContainer';
+import Footer from './commons/aside/FooterContainer';
 
 import styled from '@emotion/styled';
 
@@ -38,6 +39,7 @@ export default function PagesContainer() {
           <Route path="/react" element={<ReactPage />} />
 
           <Route path="/:category/:id" element={<PageDetailContainer />} />
+          <Route path="/search" element={<SearchPage />} />
 
           <Route path="*" element={<div>Not Found Page</div>} />
         </Routes>

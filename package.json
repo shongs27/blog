@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "codesoom project",
   "main": "index.js",
+  "homepage": "https://shongs27.github.io/project-react-6-shongs27/",
   "scripts": {
     "start": "webpack serve",
     "test:unit": "jest --watchAll",

@@ -21,3 +21,10 @@ export async function fetchPopularPosts() {
   const data = await response.json();
   return data;
 }
+
+export async function fetchSearchTarget(searchField) {
+  //searchField를 어떻게 적용 시킬까?
+  const response = await fetch(`http://localhost:3000/search`);
+  const data = await response.json();
+  return data;
+}

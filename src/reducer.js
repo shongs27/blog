@@ -9,6 +9,10 @@ const initialState = {
     recentPosts: [],
     popularPosts: [],
   },
+  search: {
+    searchField: '',
+    searchTarget: [],
+  },
 };
 
 const reducer = {
@@ -40,6 +44,26 @@ const reducer = {
     return {
       ...state,
       posts: { ...state.posts, popularPosts },
+    };
+  },
+
+  changeSearchField(state, { payload: { searchField } }) {
+    return {
+      ...state,
+      search: {
+        ...state.search,
+        searchField,
+      },
+    };
+  },
+
+  setSearchTarget(state, { payload: { searchTarget } }) {
+    return {
+      ...state,
+      search: {
+        ...state.search,
+        searchTarget,
+      },
     };
   },
 };

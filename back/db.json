@@ -62,5 +62,22 @@
       "category": "js",
       "likes": "10"
     }
+  ],
+
+  "test": [
+    {
+      "id": 1,
+      "title": "검색 결과1",
+      "content": "const, let은 변수 호이스팅이 일어나지 않는것처럼 보이지만",
+      "category": "js",
+      "likes": "12"
+    },
+    {
+      "id": 2,
+      "title": "검색 결과2",
+      "content": "for뿐만아니라 forEach, map을 통하여 배열의 반복을",
+      "category": "js",
+      "likes": "10"
+    }
   ]
 }
