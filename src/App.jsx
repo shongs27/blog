@@ -1,6 +1,16 @@
 import PagesContainer from './PagesContainer';
 
+import { useDispatch } from 'react-redux';
+import { setAccessToken } from './actions';
+
+import { getItem } from './services/storage';
+
 export default function App() {
-  // 블로그 입장 전 대문으로 꾸밀 예정
+  const dispatch = useDispatch();
+  const token = getItem('blogToken');
+  if (token) {
+    dispatch(setAccessToken(token));
+  }
+
   return <PagesContainer />;
 }

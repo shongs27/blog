@@ -2,8 +2,6 @@ import { fireEvent, render } from '@testing-library/react';
 
 import PageDetailContainer from './PageDetailContainer';
 
-import given from 'given2';
-
 import { useSelector, useDispatch } from 'react-redux';
 jest.mock('react-redux');
 

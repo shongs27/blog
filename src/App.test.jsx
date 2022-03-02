@@ -1,22 +1,51 @@
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-import EntrancePage from './EntrancePage';
+import App from './App';
 
 import { MemoryRouter } from 'react-router-dom';
 import { navList, navAddress } from '../fixture/navList';
+import { useDispatch } from 'react-redux';
+import { setAccessToken } from './actions';
 
-/*
-    1. 입구 특정 (그림, 글자)를 누르면 홈페이지로 링크가 이동한다
-*/
+import { getItem } from './services/storage';
+jest.mock('./services/storage');
 
-describe('EntrancePage', () => {
-  it('Connect site to the Blog HomePage', () => {
-    const { getByText } = render(<EntrancePage />);
+describe('App', () => {
+  const dispatch = jest.fn();
+  beforeEach(() => {
+    dispatch.mockClear();
 
-    expect(getByText('연결')).not.toBeNull();
+    useDispatch.mockImplementation(() => dispatch);
+    getItem.mockImplementation(() => given.getItem);
+  });
 
-    fireEvent.click('연결');
+  function renderApp() {
+    return render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+  }
 
-    expect(getByText('연결')).toBeNull();
+  //localStorage 확인해서 token있으면 redux로 보내준다
+  //node.js환경이니깐 localStorage 접근 못한다 => mock
+  context('when logged in', () => {
+    it('calls dispatch with login token', () => {
+      given('getItem', () => 'wowToken');
+
+      renderApp();
+
+      expect(dispatch).toBeCalledWith(setAccessToken('wowToken'));
+    });
+  });
+
+  context('when logged out', () => {
+    it("doesn't call dispatch", () => {
+      given('getItem', () => {});
+
+      renderApp();
+
+      expect(dispatch).not.toBeCalledWith(setAccessToken());
+    });
   });
 });

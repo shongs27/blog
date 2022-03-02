@@ -7,6 +7,10 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div({
   marginBottom: '57px',
+
+  '& a': {
+    padding: '5px',
+  },
 });
 
 export default function SearchSection({

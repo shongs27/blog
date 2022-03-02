@@ -3,3 +3,5 @@ node_modules
 MyBlog/
 
 .prettierignore
+
+LogoutForm2.jsx

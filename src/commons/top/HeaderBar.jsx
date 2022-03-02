@@ -9,58 +9,96 @@ import {
 
 import { Link } from 'react-router-dom';
 
+import styled from '@emotion/styled';
+
+const List = styled.ul({
+  display: 'flex',
+  height: '5vh',
+  backgroundColor: 'black',
+  color: 'gray',
+  listStyle: 'none',
+
+  margin: 0,
+  padding: '0 1em 0',
+});
+
+const Item = styled.li({
+  marginRight: '1em',
+  fontWeight: 'bold',
+
+  marginTop: '.4em',
+
+  '& span': {
+    marginLeft: '.5em',
+  },
+});
+
+const ListRight = styled.ul({
+  display: 'flex',
+  height: '5vh',
+  backgroundColor: 'black',
+  color: 'gray',
+  listStyle: 'none',
+
+  margin: 0,
+  padding: 0,
+
+  position: 'fixed',
+  top: 0,
+  right: 0,
+
+  borderRadius: '20px',
+  zIndex: 1,
+
+  '& span': {
+    lineHeight: '2em',
+    paddingLeft: '.8em',
+    paddingRight: '.8em',
+
+    '& a': {
+      textDecoration: 'none',
+      color: 'inherit',
+    },
+  },
+});
+
 export default function HeaderBar() {
   return (
     <>
-      <div
-        className="left-HeaderBar"
-        style={{
-          display: 'flex',
-          height: '5vh',
-          backgroundColor: 'black',
-          color: 'gray',
-          fontWeight: 'bold',
-        }}
-      >
-        <div className="HeaderBar-home" style={{ marginRight: '20px' }}>
+      <List>
+        <Item>
           <Link to="/">
-            <FontAwesomeIcon icon={faHome} />
+            <FontAwesomeIcon icon={faHome} size="lg" />
           </Link>
-        </div>
+        </Item>
 
-        <div className="HeaderBar-resume" style={{ marginRight: '20px' }}>
-          <FontAwesomeIcon icon={faFile} />
-          <span> 소개</span>
-        </div>
+        <Item>
+          <FontAwesomeIcon icon={faFile} size="lg" />
+          <span>소개</span>
+        </Item>
 
-        <div className="HeaderBar-game" style={{ marginRight: '20px' }}>
-          <FontAwesomeIcon icon={faGamepad} />
-          <span> 게임</span>
-        </div>
+        <Item>
+          <FontAwesomeIcon icon={faGamepad} size="lg" />
+          <span>게임</span>
+        </Item>
 
-        <div className="HeaderBar-board" style={{ marginRight: '20px' }}>
-          <FontAwesomeIcon icon={faChalkboardTeacher} />
-          <span> 방명록</span>
-        </div>
-      </div>
+        <Item>
+          <FontAwesomeIcon icon={faChalkboardTeacher} size="lg" />
+          <span>방명록</span>
+        </Item>
+      </List>
 
-      <div
-        className="right-HeaderBar"
-        style={{
-          display: 'flex',
-          position: 'fixed',
-          top: 0,
-          right: 5,
-          height: '5vh',
-          backgroundColor: 'black',
-          color: 'gray',
-          fontWeight: 'bold',
-        }}
-      >
-        <span> Hong WonBae </span>
+      <ListRight>
+        <span>
+          <Link to="/login"> Hong WonBae </Link>
+        </span>
+
         <img src="img/hongs.jpg" alt="홍원배" width="35" height="35" />
-        <FontAwesomeIcon icon={faSearch} />
-      </div>
+
+        <span>
+          <FontAwesomeIcon icon={faSearch} size="lg" />
+        </span>
+      </ListRight>
     </>
   );
 }

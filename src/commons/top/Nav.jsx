@@ -7,6 +7,9 @@ import { navList, navAddress } from '../../../fixture/navList';
 
 import styled from '@emotion/styled';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { reverseClicked } from '../../actions';
+
 const Container = styled.div({
   position: 'relative',
 
@@ -41,6 +44,12 @@ const Span = styled.span({
 });
 
 export default function Nav() {
+  const dispatch = useDispatch();
+  const clicked = useSelector((state) => state.clicked);
+
+  function handleClick() {
+    dispatch(reverseClicked());
+  }
   return (
     <Container>
       {navList.map((navName, i) => (
@@ -52,7 +61,8 @@ export default function Nav() {
       ))}
 
       <Span>
-        <FontAwesomeIcon icon={faSearch} />
+        {clicked && <input type="text" placeholder="검색하기" />}
+        <FontAwesomeIcon icon={faSearch} onClick={handleClick} />
       </Span>
     </Container>
   );

@@ -4,6 +4,8 @@ import {
   fetchPopularPosts,
   fetchRecentPosts,
   fetchSearchTarget,
+  postArticle,
+  postLogin,
 } from './services/api';
 
 export function setPageContents(pageName, pageContents) {
@@ -93,5 +95,52 @@ export function setSearchTarget(searchTarget) {
   return {
     type: 'setSearchTarget',
     payload: { searchTarget },
+  };
+}
+
+export function reverseClicked() {
+  return {
+    type: 'reverseClicked',
+  };
+}
+
+export function changeLoginField(name, value) {
+  return {
+    type: 'changeLoginField',
+    payload: { name, value },
+  };
+}
+
+export function requestLogin() {
+  return async (dispatch, getState) => {
+    const {
+      login: {
+        loginField: { email, password },
+      },
+    } = getState();
+
+    const accessToken = await postLogin(email, password);
+    localStorage.setItem('blogToken', accessToken);
+    dispatch(setAccessToken(accessToken));
+  };
+}
+
+export function setAccessToken(accessToken) {
+  return {
+    type: 'setAccessToken',
+    payload: { accessToken },
+  };
+}
+
+export function logout() {
+  localStorage.removeItem('blogToken');
+  return {
+    type: 'logout',
+  };
+}
+
+export function registerArticle(formData) {
+  return async (dispatch, getState) => {
+    const result = await postArticle(formData);
   };
 }

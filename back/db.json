@@ -5,7 +5,8 @@
       "title": "props에 대하여",
       "content": "컴포넌트는 props를 통해 데이터를 전달한다",
       "category": "react",
-      "likes": "10"
+      "likes": "10",
+      "markdown": ""
     },
     {
       "id": 2,
@@ -29,7 +30,6 @@
       "likes": "200"
     }
   ],
-
   "react": [
     {
       "id": 1,
@@ -46,7 +46,6 @@
       "likes": "10"
     }
   ],
-
   "js": [
     {
       "id": 1,
@@ -63,7 +62,6 @@
       "likes": "10"
     }
   ],
-
   "test": [
     {
       "id": 1,
@@ -79,5 +77,9 @@
       "category": "js",
       "likes": "10"
     }
-  ]
+  ],
+  "login": {
+    "accessToken": "wowToken"
+  },
+  "post": {}
 }

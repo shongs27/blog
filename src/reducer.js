@@ -4,7 +4,7 @@ const initialState = {
     js: [],
     react: [],
   },
-  page: { id: '', title: '', content: '' },
+  page: { id: '', title: '', content: '', markdown: '' },
   posts: {
     recentPosts: [],
     popularPosts: [],
@@ -13,6 +13,14 @@ const initialState = {
     searchField: '',
     searchTarget: [],
   },
+  login: {
+    loginField: {
+      email: '',
+      password: '',
+    },
+    accessToken: '',
+  },
+  clicked: false,
 };
 
 const reducer = {
@@ -63,6 +71,46 @@ const reducer = {
       search: {
         ...state.search,
         searchTarget,
+      },
+    };
+  },
+
+  reverseClicked(state) {
+    return {
+      ...state,
+      clicked: !state.clicked,
+    };
+  },
+
+  changeLoginField(state, { payload: { name, value } }) {
+    return {
+      ...state,
+      login: {
+        ...state.login,
+        loginField: {
+          ...state.login.loginField,
+          [name]: value,
+        },
+      },
+    };
+  },
+
+  setAccessToken(state, { payload: { accessToken } }) {
+    return {
+      ...state,
+      login: {
+        ...state.login,
+        accessToken,
+      },
+    };
+  },
+
+  logout(state) {
+    return {
+      ...state,
+      login: {
+        ...state.login,
+        accessToken: '',
       },
     };
   },

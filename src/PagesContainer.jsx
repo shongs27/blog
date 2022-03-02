@@ -8,6 +8,7 @@ import ReactPage from './pages/ReactPage';
 // import SomethingPage from './pages/SomethingPage';
 import PageDetailContainer from './components/PageDetailContainer';
 import SearchPage from './pages/SearchPage';
+import LoginPage from './pages/LoginPage';
 
 import HeaderBar from './commons/top/HeaderBar';
 import Title from './commons/top/Title';
@@ -38,8 +39,9 @@ export default function PagesContainer() {
           <Route path="/js" element={<JsPage />} />
           <Route path="/react" element={<ReactPage />} />
 
-          <Route path="/:category/:id" element={<PageDetailContainer />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/:category/:id" element={<PageDetailContainer />} />
 
           <Route path="*" element={<div>Not Found Page</div>} />
         </Routes>

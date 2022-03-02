@@ -4,7 +4,7 @@
   "description": "",
   "main": "db.js",
   "scripts": {
-    "start": "json-server db.json --routes routes.json"
+    "start": "json-server db.json --routes routes.json --watch"
   },
   "keywords": [],
   "author": "",
