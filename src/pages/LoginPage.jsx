@@ -1,15 +1,17 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { changeLoginField, logout, requestLogin } from '../actions';
+import {
+  changeLoginField,
+  logout,
+  registerArticle,
+  requestLogin,
+} from '../actions';
 
 import LoginForm from '../components/LoginForm';
 import LogoutForm from '../components/LogoutForm';
 
 import styled from '@emotion/styled';
-const Container = styled.div({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
+
+const Container = styled.div({});
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -32,12 +34,8 @@ export default function LoginPage() {
     dispatch(logout());
   }
 
-  function handleUpload(e) {
-    e.preventDefault();
-
-    console.log(e);
-    console.log(e.target);
-    console.log(e.target.value);
+  function handleUpload(form) {
+    dispatch(registerArticle(form));
   }
 
   return (

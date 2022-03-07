@@ -7,7 +7,7 @@ import { getItem } from './services/storage';
 
 export default function App() {
   const dispatch = useDispatch();
-  const token = getItem('blogToken');
+  const token = getItem('accessToken');
   if (token) {
     dispatch(setAccessToken(token));
   }

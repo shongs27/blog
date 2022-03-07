@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import {
   fetchPageContents,
   fetchPageDetail,
@@ -7,6 +8,7 @@ import {
   postArticle,
   postLogin,
 } from './services/api';
+import { setItem } from './services/storage';
 
 export function setPageContents(pageName, pageContents) {
   return {
@@ -120,8 +122,13 @@ export function requestLogin() {
     } = getState();
 
     const accessToken = await postLogin(email, password);
-    localStorage.setItem('blogToken', accessToken);
-    dispatch(setAccessToken(accessToken));
+
+    if (accessToken) {
+      setItem('accessToken', accessToken);
+      dispatch(setAccessToken(accessToken));
+    } else {
+      message.info('유저가 없거나 비밀번호가 틀렸습니다');
+    }
   };
 }
 
@@ -133,14 +140,14 @@ export function setAccessToken(accessToken) {
 }
 
 export function logout() {
-  localStorage.removeItem('blogToken');
+  localStorage.removeItem('accessToken');
   return {
     type: 'logout',
   };
 }
 
-export function registerArticle(formData) {
+export function registerArticle(form) {
   return async (dispatch, getState) => {
-    const result = await postArticle(formData);
+    const result = await postArticle(form);
   };
 }

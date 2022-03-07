@@ -5,3 +5,5 @@ MyBlog/
 .prettierignore
 
 LogoutForm2.jsx
+
+.env

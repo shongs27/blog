@@ -15,9 +15,9 @@ describe('LogoutForm', () => {
     it('render logout button', () => {
         const {getByText} =  renderLogoutForm();
 
-        expect(getByText(/떠나기/)).not.toBeNull():
+        expect(getByText(/로그아웃/)).not.toBeNull():
 
-        fireEvent.click(getByText(/떠나기/))
+        fireEvent.click(getByText(/로그아웃/))
 
         expect(handleLogout).toBeCalled();
     })
@@ -26,6 +26,7 @@ describe('LogoutForm', () => {
         const {getByText} =  renderLogoutForm();
 
         expect(getByText(/카테고리/)).not.toBeNull();
+        expect(getByText(/파일/)).not.toBeNull();
         
         fireEvent.click(getByText(/+/))
 
