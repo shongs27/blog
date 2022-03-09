@@ -1,0 +1,5 @@
+{
+  "/recentPosts": "/home?_limit=1",
+  "/popularPosts": "/home?_sort=likes&_order=desc",
+  "/search": "/test"
+}
