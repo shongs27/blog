@@ -16,9 +16,9 @@ export default function RecentPosts({ recentPosts = [] }) {
     <Container>
       <h3>최근포스트</h3>
       <List>
-        {recentPosts.map(({ id, title, category }, index) => (
+        {recentPosts.map(({ _id, title, category }, index) => (
           <Item key={index}>
-            <Link to={`/${category}/${id}`}>
+            <Link to={`/${category}/${_id}`}>
               <span>{`<${
                 category[0].toUpperCase() + category.slice(1)
               }> ${title} `}</span>

@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import {
   changeSearchField,
   getFooterPosts,
-  getSearchTarget,
+  getSearchField,
 } from '../../actions';
 import ExtraSection from './sections/ExtraSection';
 
@@ -50,7 +50,7 @@ export default function FooterContainer() {
   }
 
   function handleSubmit() {
-    dispatch(getSearchTarget());
+    dispatch(getSearchField());
   }
 
   return (

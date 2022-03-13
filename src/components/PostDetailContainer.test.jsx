@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react';
 
-import PageDetailContainer from './PageDetailContainer';
+import PostDetailContainer from './PostDetailContainer';
 
 import { useSelector, useDispatch } from 'react-redux';
 jest.mock('react-redux');
@@ -10,14 +10,12 @@ jest.mock('@fortawesome/react-fontawesome', () => ({
   FontAwesomeIcon: jest.fn(() => <div>폰트어썸</div>),
 }));
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 /*
 1. params값으로 받아온 selector 값으로 인해 아래 Detail의 타이틀, 내용이 잘보이는가
 2. 데이터를 잘 받아오도록 dispatch가 일어나는가
 + selector값을 받아오기전이라면(=>값이 비어져있다) Loading화면이 나오는가 */
 
-describe('PageDetailContainer', () => {
+describe('PostDetailContainer', () => {
   const dispatch = jest.fn();
 
   beforeEach(() => {
@@ -40,7 +38,7 @@ describe('PageDetailContainer', () => {
     }));
 
     it('renders Page detail', () => {
-      const { getByText } = render(<PageDetailContainer />);
+      const { getByText } = render(<PostDetailContainer />);
 
       expect(getByText(/배열의 반복/)).not.toBeNull();
       expect(
@@ -49,7 +47,7 @@ describe('PageDetailContainer', () => {
     });
 
     it('dispatch "Like" number', () => {
-      const { getByText } = render(<PageDetailContainer />);
+      const { getByText } = render(<PostDetailContainer />);
 
       fireEvent.click(getByText(/폰트어썸/));
 
@@ -59,7 +57,7 @@ describe('PageDetailContainer', () => {
 
   context('without page', () => {
     it('renders waiting guidance', () => {
-      const { container } = render(<PageDetailContainer />);
+      const { container } = render(<PostDetailContainer />);
 
       expect(container).toHaveTextContent(/글을 불러오는 중입니다/);
     });

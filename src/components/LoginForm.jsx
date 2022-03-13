@@ -5,6 +5,14 @@ import styled from '@emotion/styled';
 export default function LoginForm({ loginField, handleChange, handleClick }) {
   const { email, password } = loginField;
 
+  function onChange(e) {
+    const {
+      target: { name, value },
+    } = e;
+
+    handleChange(name, value);
+  }
+
   return (
     <div>
       <h1>로그인</h1>
@@ -15,7 +23,7 @@ export default function LoginForm({ loginField, handleChange, handleClick }) {
           id="login-email"
           name="email"
           value={email}
-          onChange={handleChange}
+          onChange={onChange}
         />
       </div>
 
@@ -26,7 +34,7 @@ export default function LoginForm({ loginField, handleChange, handleClick }) {
           id="login-password"
           name="password"
           value={password}
-          onChange={handleChange}
+          onChange={onChange}
         />
       </div>
 

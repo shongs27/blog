@@ -24,9 +24,9 @@ export default function PopularPosts({ popularPosts = [] }) {
     <Container>
       <h3>인기포스트</h3>
       <List>
-        {popularPosts.map(({ id, title, category, likes }, index) => (
+        {popularPosts.map(({ _id, title, category, likes }, index) => (
           <Item key={index}>
-            <Link to={`/${category}/${id}`}>
+            <Link to={`/${category}/${_id}`}>
               {`<${category[0].toUpperCase() + category.slice(1)}> ${title} `}
 
               <Span>

@@ -10,7 +10,7 @@ import 'antd/dist/antd.css';
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter basename={baseName}>
+    <BrowserRouter basename={process.env.base}>
       <App />
     </BrowserRouter>
   </Provider>,

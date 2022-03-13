@@ -1,43 +1,43 @@
 const initialState = {
-  pages: {
+  posts: {
     home: [],
     js: [],
     react: [],
-  },
-  page: { id: '', title: '', content: '', markdown: '' },
-  posts: {
     recentPosts: [],
     popularPosts: [],
   },
   search: {
     searchField: '',
-    searchTarget: [],
+    searchedPosts: [],
   },
   login: {
     loginField: {
       email: '',
       password: '',
     },
+    userId: '',
     accessToken: '',
   },
+  page: { title: '', description: '' },
+  post: '',
   clicked: false,
 };
 
 const reducer = {
-  setPageContents(state, { payload: { pageName, pageContents } }) {
+  setPagesPosts(state, { payload: { category, pagePosts } }) {
     return {
       ...state,
-      pages: {
-        ...state.pages,
-        [pageName]: pageContents,
+      posts: {
+        ...state.posts,
+        [category]: pagePosts,
       },
     };
   },
 
-  setPageDetail(state, { payload: { pageDetail } }) {
+  setPostDetail(state, { payload: { postDetail } }) {
     return {
       ...state,
-      page: pageDetail,
+      post: postDetail,
     };
   },
 
@@ -65,12 +65,12 @@ const reducer = {
     };
   },
 
-  setSearchTarget(state, { payload: { searchTarget } }) {
+  setSearchTarget(state, { payload: { searchedPosts } }) {
     return {
       ...state,
       search: {
         ...state.search,
-        searchTarget,
+        searchedPosts,
       },
     };
   },
@@ -95,11 +95,12 @@ const reducer = {
     };
   },
 
-  setAccessToken(state, { payload: { accessToken } }) {
+  setAccessToken(state, { payload: { userId, accessToken } }) {
     return {
       ...state,
       login: {
         ...state.login,
+        userId,
         accessToken,
       },
     };
@@ -110,7 +111,18 @@ const reducer = {
       ...state,
       login: {
         ...state.login,
+        userId: '',
         accessToken: '',
+      },
+    };
+  },
+
+  changePostField(state, { payload: { name, value } }) {
+    return {
+      ...state,
+      page: {
+        ...state.page,
+        [name]: value,
       },
     };
   },

@@ -1,8 +1,11 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
+const Schema = mongoose.Schema;
 
-const UserSchema = new mongoose.Schema({
+const jwt = require('jsonwebtoken');
+const moment = require('moment');
+
+const UserSchema = new Schema({
   email: {
     type: String,
     trim: true,
@@ -38,9 +41,10 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.methods.generateToken = function (cb) {
   const token = jwt.sign(this._id.toString(), process.env.jwtKey);
-  this.token = token;
+  const hours = moment().add(2, 'hour').valueOf();
 
-  //user.tokenExp는 조금 있다가 하자
+  this.token = token;
+  this.tokenExp = hours;
 
   this.save((err, user) => {
     if (err) return cb(err);
@@ -57,5 +61,4 @@ UserSchema.methods.generateToken = function (cb) {
 //     });
 //   });
 // };
-
 module.exports = mongoose.model('User', UserSchema);

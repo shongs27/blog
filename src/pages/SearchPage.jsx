@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
-import PageContents from '../components/PageContents';
+
+import PagesPosts from '../components/PagesPosts';
 
 export default function SearchPage() {
-  const { searchTarget } = useSelector((state) => state.search);
+  const { searchedPosts } = useSelector((state) => state.search);
 
-  return <PageContents articleTitle="검색 결과" pageContents={searchTarget} />;
+  return <PagesPosts articleTitle="검색 결과" pagesPosts={searchedPosts} />;
 }

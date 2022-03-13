@@ -6,7 +6,7 @@ import ReactPage from './pages/ReactPage';
 // import ComputerPage from './pages/ComputerPage';
 // import AlgorithmPage from './pages/AlgorithmPage';
 // import SomethingPage from './pages/SomethingPage';
-import PageDetailContainer from './components/PageDetailContainer';
+import PostDetailContainer from './components/PostDetailContainer';
 import SearchPage from './pages/SearchPage';
 import LoginPage from './pages/LoginPage';
 
@@ -41,7 +41,7 @@ export default function PagesContainer() {
 
           <Route path="/search" element={<SearchPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/:category/:id" element={<PageDetailContainer />} />
+          <Route path="/:category/:id" element={<PostDetailContainer />} />
 
           <Route path="*" element={<div>Not Found Page</div>} />
         </Routes>

@@ -1,19 +1,17 @@
 import { useEffect } from 'react';
 
-import PageContents from '../components/PageContents';
+import PagesPosts from '../components/PagesPosts';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getPageContents } from '../actions';
+import { getPagesPosts } from '../actions';
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const homePageContents = useSelector((state) => state.pages.home);
+  const homepagePosts = useSelector((state) => state.posts.home);
 
   useEffect(() => {
-    dispatch(getPageContents('home'));
+    dispatch(getPagesPosts('home'));
   }, []);
 
-  console.log('홈페이지용', homePageContents);
-
-  return <PageContents articleTitle="전체글" pageContents={homePageContents} />;
+  return <PagesPosts articleTitle="전체글" pagesPosts={homepagePosts} />;
 }

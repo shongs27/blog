@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
 import { Link } from 'react-router-dom';
 
 import { navList, navAddress } from '../../../fixture/navList';
@@ -36,13 +33,6 @@ const Container = styled.div({
   },
 });
 
-const Span = styled.span({
-  position: 'absolute',
-  right: '2px',
-  textAlign: 'center',
-  lineHeight: '3.5',
-});
-
 export default function Nav() {
   const dispatch = useDispatch();
   const clicked = useSelector((state) => state.clicked);
@@ -59,11 +49,6 @@ export default function Nav() {
           </li>
         </ul>
       ))}
-
-      <Span>
-        {clicked && <input type="text" placeholder="검색하기" />}
-        <FontAwesomeIcon icon={faSearch} onClick={handleClick} />
-      </Span>
     </Container>
   );
 }

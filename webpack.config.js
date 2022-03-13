@@ -1,10 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const { bindActionCreators } = require('redux');
+
+require('dotenv').config();
 
 module.exports = {
-  mode: 'development',
+  mode: process.env.mode,
   // entry: path.resolve(__dirname, 'src/index.jsx'),
   // output: {
   // path: path.resolve(__dirname, 'dist'),
@@ -46,9 +47,7 @@ module.exports = {
       template: 'public/index.html',
     }),
     new webpack.DefinePlugin({
-      baseName: JSON.stringify('/'),
-
-      // baseName: JSON.stringify('/project-react-6-shongs27'),
+      'process.env': JSON.stringify(process.env),
     }),
   ],
 };

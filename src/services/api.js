@@ -1,37 +1,52 @@
-export async function fetchPageContents(category) {
-  const response = await fetch(`http://localhost:8000/${category}`);
+export async function fetchPagesPosts(category) {
+  const response = await fetch(`${process.env.backAPI}/posts/${category}`);
   const data = await response.json();
-
   return data;
 }
 
-export async function fetchPageDetail(category, id) {
-  const response = await fetch(`http://localhost:8000/${category}/${id}`);
+export async function fetchPostDetail(category, id) {
+  const response = await fetch(
+    `${process.env.backAPI}/posts/${category}/${id}`
+  );
   const data = await response.json();
   return data;
 }
 
 export async function fetchRecentPosts() {
-  const response = await fetch('http://localhost:8000/recentPosts');
-  const data = await response.json();
-  return data;
+  const response = await fetch(`${process.env.backAPI}/posts/recentPosts`);
+  const { trial, posts } = await response.json();
+
+  if (trial) {
+    return posts;
+  }
 }
 
 export async function fetchPopularPosts() {
-  const response = await fetch('http://localhost:8000/popularPosts');
-  const data = await response.json();
-  return data;
+  const response = await fetch(`${process.env.backAPI}/posts/popularPosts`);
+  const { trial, posts } = await response.json();
+
+  if (trial) {
+    return posts;
+  }
 }
 
-export async function fetchSearchTarget(searchField) {
-  //searchField를 어떻게 적용 시킬까?
-  const response = await fetch(`http://localhost:8000/search`);
-  const data = await response.json();
-  return data;
+export async function fetchSearchField(searchField) {
+  const response = await fetch(`${process.env.backAPI}/posts/search`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'text/plain',
+    },
+    body: searchField,
+  });
+
+  const { trial, posts } = await response.json();
+  if (trial) {
+    return posts;
+  }
 }
 
 export async function postLogin(email, password) {
-  const response = await fetch('http://localhost:3000/login', {
+  const response = await fetch(`${process.env.backAPI}/login`, {
     method: 'POST',
     body: JSON.stringify({ email, password }),
     headers: {
@@ -39,19 +54,22 @@ export async function postLogin(email, password) {
     },
   });
 
-  const { trial, accessToken } = await response.json();
+  const { trial, accessToken, userId } = await response.json();
 
-  if (trial) return accessToken;
+  if (trial) return { userId, accessToken };
 }
 
 export async function postArticle(form) {
-  const response = await fetch('http://localhost:3000/post', {
+  const response = await fetch(`${process.env.backAPI}/posts`, {
     method: 'POST',
     body: JSON.stringify(form),
     headers: {
       'Content-type': 'application/json',
     },
   });
+  const { trial, post } = await response.json();
 
-  return response;
+  if (trial) {
+    return { trial, post };
+  }
 }

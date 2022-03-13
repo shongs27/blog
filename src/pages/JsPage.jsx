@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
 
-import PageContents from '../components/PageContents';
+import PagesPosts from '../components/PagesPosts';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getPageContents } from '../actions';
+import { getPagesPosts } from '../actions';
 
 export default function JsPage() {
   const dispatch = useDispatch();
 
-  const jsPageContents = useSelector((state) => state.pages.js);
+  const jspagePosts = useSelector((state) => state.posts.js);
 
   useEffect(() => {
-    dispatch(getPageContents('js'));
+    dispatch(getPagesPosts('js'));
   }, []);
 
-  return <PageContents articleTitle="JS" pageContents={jsPageContents} />;
+  return <PagesPosts articleTitle="JS" pagesPosts={jspagePosts} />;
 }
