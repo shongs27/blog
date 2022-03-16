@@ -40,6 +40,7 @@ export default function FooterContainer() {
   const recentPosts = useSelector((state) => state.posts.recentPosts);
   const popularPosts = useSelector((state) => state.posts.popularPosts);
   const searchField = useSelector((state) => state.search.searchField);
+  const dailyActiveUsers = useSelector((state) => state.GA);
 
   useEffect(() => {
     dispatch(getFooterPosts());
@@ -51,6 +52,7 @@ export default function FooterContainer() {
 
   function handleSubmit() {
     dispatch(getSearchField());
+    window.scrollTo(0, 0);
   }
 
   return (
@@ -63,6 +65,7 @@ export default function FooterContainer() {
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             searchField={searchField}
+            dailyActiveUsers={dailyActiveUsers}
           />
         </div>
       </Container>

@@ -7,6 +7,7 @@ import {
   fetchSearchField,
   postArticle,
   postLogin,
+  fetchGoogleAnalytics,
 } from './services/api';
 import { setItem, removeItem } from './services/storage';
 
@@ -172,5 +173,29 @@ export function changePostField(name, value) {
   return {
     type: 'changePostField',
     payload: { name, value },
+  };
+}
+
+export function getGoogleAnalytics() {
+  return async (dispatch, getState) => {
+    const { rows } = await fetchGoogleAnalytics();
+
+    const activeUsers = {
+      todayActiveUser: rows[0][1],
+      yesterDayActiveUser: rows[1][1],
+      oneMonthActiveUser: rows.reduce(
+        (prev, current) => prev + Number(current[1]),
+        0
+      ),
+    };
+
+    dispatch(setGoogleAnalytics(activeUsers));
+  };
+}
+
+export function setGoogleAnalytics(activeUsers) {
+  return {
+    type: 'setGoogleAnalytics',
+    payload: { activeUsers },
   };
 }

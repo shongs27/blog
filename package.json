@@ -5,12 +5,12 @@
   "main": "index.js",
   "homepage": "https://shongs27.github.io/project-react-6-shongs27/",
   "scripts": {
-    "dev": "env-cmd -f .env.dev webpack serve",
+    "devF": "env-cmd -f .env.dev webpack serve",
+    "devB": "cd back && npm start",
     "build": "webpack build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "echo shongs27.kr > ./dist/CNAME && gh-pages -d dist",
     "test:unit": "jest --watchAll",
-    "back": "cd back && npm start",
     "jsonServer": "cd back && npm run dev"
   },
   "author": "hongs",

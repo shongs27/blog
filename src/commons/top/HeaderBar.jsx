@@ -11,13 +11,12 @@ import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
-const List = styled.ul({
+const ListLeft = styled.ul({
   display: 'flex',
-  height: '5vh',
+  height: '2.4rem',
   backgroundColor: 'black',
   color: 'gray',
   listStyle: 'none',
-
   margin: 0,
   padding: '0 1em 0',
 });
@@ -35,7 +34,7 @@ const Item = styled.li({
 
 const ListRight = styled.ul({
   display: 'flex',
-  height: '5vh',
+  height: '2.4em',
   backgroundColor: 'black',
   color: 'gray',
   listStyle: 'none',
@@ -65,7 +64,7 @@ const ListRight = styled.ul({
 export default function HeaderBar() {
   return (
     <>
-      <List>
+      <ListLeft>
         <Item>
           <Link to="/">
             <FontAwesomeIcon icon={faHome} size="lg" />
@@ -86,7 +85,7 @@ export default function HeaderBar() {
           <FontAwesomeIcon icon={faChalkboardTeacher} size="lg" />
           <span>방명록</span>
         </Item>
-      </List>
+      </ListLeft>
 
       <ListRight>
         <span>

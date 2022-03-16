@@ -1,4 +1,9 @@
 const initialState = {
+  GA: {
+    todayActiveUser: '',
+    yesterDayActiveUser: '',
+    oneMonthActiveUser: '',
+  },
   posts: {
     home: [],
     js: [],
@@ -124,6 +129,13 @@ const reducer = {
         ...state.page,
         [name]: value,
       },
+    };
+  },
+
+  setGoogleAnalytics(state, { payload: { activeUsers } }) {
+    return {
+      ...state,
+      GA: activeUsers,
     };
   },
 };

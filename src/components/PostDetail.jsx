@@ -10,7 +10,7 @@ export default function PostDetail({ postDetail }) {
     postDetail;
   return (
     <Container>
-      <MarkdownRender markdown={content} />;
+      <MarkdownRender markdown={content} />
     </Container>
   );
 }

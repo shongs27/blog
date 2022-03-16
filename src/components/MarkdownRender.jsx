@@ -7,7 +7,7 @@ const MarkDownStyle = styled.div({
   lineHeight: '2.5rem',
 });
 
-// const markdown = `
+// const testMarkdown = `
 // # 제목
 // ## 부제목
 

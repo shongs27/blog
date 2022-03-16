@@ -1,13 +1,17 @@
-export default function AnalysticSection() {
+export default function AnalysticSection({ dailyActiveUsers }) {
+  const { todayActiveUser, yesterDayActiveUser, oneMonthActiveUser } =
+    dailyActiveUsers;
   return (
     <div>
       <h3>전체 방문자</h3>
-      <span>{'123,711 <test>'}</span>
+      <span>{oneMonthActiveUser}</span>
       <div className="today">
         <span>오늘</span>
+        <span>{todayActiveUser}</span>
       </div>
-      <div className="tomorrow">
-        <span>내일</span>
+      <div className="yesterday">
+        <span>어제</span>
+        <span>{yesterDayActiveUser}</span>
       </div>
     </div>
   );

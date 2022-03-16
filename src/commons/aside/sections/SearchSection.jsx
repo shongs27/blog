@@ -22,6 +22,13 @@ export default function SearchSection({
     handleChange(e.target.value);
   }
 
+  function onDown(e) {
+    // keyCode 13은 Enter
+    if (e.keyCode === 13) {
+      handleSubmit();
+    }
+  }
+
   return (
     <Container>
       <h3>검색</h3>
@@ -29,6 +36,7 @@ export default function SearchSection({
         type="text"
         placeholder="찾을 내용을 입력하세요"
         onChange={onChange}
+        onKeyDown={onDown}
         value={searchField}
       />
       <Link to="/search">

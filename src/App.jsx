@@ -1,9 +1,10 @@
 import PagesContainer from './PagesContainer';
 
 import { useDispatch } from 'react-redux';
-import { setAccessToken } from './actions';
+import { getGoogleAnalytics, setAccessToken } from './actions';
 
 import { getItem } from './services/storage';
+import { useEffect } from 'react';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -13,6 +14,10 @@ export default function App() {
   if (token) {
     dispatch(setAccessToken(token, userId));
   }
+
+  useEffect(() => {
+    dispatch(getGoogleAnalytics());
+  }, []);
 
   return <PagesContainer />;
 }
