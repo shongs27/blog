@@ -7,13 +7,12 @@ const PostSchema = new Schema(
     writer: {
       type: Schema.Types.ObjectId,
       ref: 'User',
+      text: true,
     },
     title: String,
     description: String,
     category: String,
-    content: {
-      type: String,
-    },
+    content: String,
     likes: {
       type: Number,
       default: 0,
@@ -21,5 +20,6 @@ const PostSchema = new Schema(
   },
   { timestamps: true }
 );
+PostSchema.index({ '$**': 'text' });
 
 module.exports = mongoose.model('Post', PostSchema);
