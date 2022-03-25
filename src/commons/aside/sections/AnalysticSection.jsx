@@ -7,7 +7,7 @@ export default function AnalysticSection({ dailyActiveUsers }) {
       <span>{oneMonthActiveUser}</span>
       <div className="today">
         <span>오늘</span>
-        <span>{todayActiveUser}</span>
+        <span></span>
       </div>
       <div className="yesterday">
         <span>어제</span>

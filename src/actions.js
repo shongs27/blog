@@ -89,12 +89,13 @@ export function getSearchField() {
     const {
       search: { searchField },
     } = getState();
-    const searchedPosts = await fetchSearchField(searchField);
 
-    if (searchedPosts.length) {
-      dispatch(setSearchTarget(searchedPosts));
+    const { trial, posts } = await fetchSearchField(searchField);
+
+    if (trial) {
+      dispatch(setSearchTarget(posts));
     } else {
-      dispatch(setSearchTarget([searchedPosts]));
+      dispatch(setSearchTarget(''));
     }
 
     dispatch(changeSearchField(''));
@@ -178,17 +179,16 @@ export function changePostField(name, value) {
 
 export function getGoogleAnalytics() {
   return async (dispatch, getState) => {
-    const { rows } = await fetchGoogleAnalytics();
+    const { trial, rows, totals } = await fetchGoogleAnalytics();
+
+    if (!trial) {
+      return message.info('가져올 수 없었습니다');
+    }
 
     const activeUsers = {
-      todayActiveUser: rows[0][1],
-      yesterDayActiveUser: rows[1][1],
-      oneMonthActiveUser: rows.reduce(
-        (prev, current) => prev + Number(current[1]),
-        0
-      ),
+      yesterDayActiveUser: rows[0].metricValues[0].value,
+      oneMonthActiveUser: totals[0].metricValues[0].value,
     };
-
     dispatch(setGoogleAnalytics(activeUsers));
   };
 }

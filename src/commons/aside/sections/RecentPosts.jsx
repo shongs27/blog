@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
-import { List, Item } from '../../../styles/pageStyle';
+import { List, Item } from '@styles/pageStyle';
 
 const Container = styled.div({
   float: 'left',

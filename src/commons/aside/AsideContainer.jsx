@@ -16,9 +16,11 @@ import ExtraSection from './sections/ExtraSection';
 
 const Container = styled.div({
   borderTop: '1px solid rgb(230, 230, 230)',
+});
 
+const SectionsContainer = styled.div({
   width: '80%',
-  margin: '60px auto 0',
+  margin: '0 auto',
   minHeight: '300px',
   padding: '57px 34px 24px',
   // height: 'calc(100% - 80px)',
@@ -27,15 +29,9 @@ const Container = styled.div({
   //   paddingLeft: '34px',
   //   paddingRight: '34px',
   // },
-
-  // '& div': {
-  // overflow: 'hidden',
-  // maxWidth: '1200px',
-  // margin: '0 auto',
-  // },
 });
 
-export default function FooterContainer() {
+export default function AsideSectionsContainer() {
   const dispatch = useDispatch();
   const recentPosts = useSelector((state) => state.posts.recentPosts);
   const popularPosts = useSelector((state) => state.posts.popularPosts);
@@ -56,20 +52,18 @@ export default function FooterContainer() {
   }
 
   return (
-    <>
-      <Container>
-        <div>
-          <RecentPosts recentPosts={recentPosts} />
-          <PopularPosts popularPosts={popularPosts} />
-          <ExtraSection
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            searchField={searchField}
-            dailyActiveUsers={dailyActiveUsers}
-          />
-        </div>
-      </Container>
-      <FooterBar popularPosts={popularPosts} />
-    </>
+    <Container>
+      <SectionsContainer>
+        <RecentPosts recentPosts={recentPosts} />
+        <PopularPosts popularPosts={popularPosts} />
+        <ExtraSection
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          searchField={searchField}
+          dailyActiveUsers={dailyActiveUsers}
+        />
+      </SectionsContainer>
+      <FooterBar />
+    </Container>
   );
 }

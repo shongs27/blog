@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/react';
 
 import Nav from './Nav';
 
-import { navList } from '../../../fixture/navList';
+import { navList } from '../../../fixture/nav';
 import { MemoryRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';

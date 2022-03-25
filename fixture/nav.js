@@ -1,11 +1,13 @@
-export const navList = [
-  'Home',
+export const navList = ['Home', 'JS', 'React', 'CS', 'Algorithm', '이것저것'];
+export const navListPageName = [
+  '전체글',
   'JS',
   'React',
-  '컴퓨팅',
+  'Computer',
   '알고리즘',
   '이것저것',
 ];
+
 export const navAddress = [
   '/home',
   '/js',

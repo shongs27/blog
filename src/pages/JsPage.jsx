@@ -5,6 +5,8 @@ import PagesPosts from '../components/PagesPosts';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPagesPosts } from '../actions';
 
+import { navListPageName } from '@fixture/nav';
+
 export default function JsPage() {
   const dispatch = useDispatch();
 
@@ -14,5 +16,7 @@ export default function JsPage() {
     dispatch(getPagesPosts('js'));
   }, []);
 
-  return <PagesPosts articleTitle="JS" pagesPosts={jspagePosts} />;
+  return (
+    <PagesPosts articleTitle={navListPageName[1]} pagesPosts={jspagePosts} />
+  );
 }

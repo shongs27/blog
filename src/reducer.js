@@ -8,6 +8,7 @@ const initialState = {
     home: [],
     js: [],
     react: [],
+    computer: [],
     recentPosts: [],
     popularPosts: [],
   },

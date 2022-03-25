@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { navList, navAddress } from '../../../fixture/navList';
+import { navList, navAddress } from '../../../fixture/nav';
 
 import styled from '@emotion/styled';
 

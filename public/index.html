@@ -14,11 +14,23 @@
       href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
       rel="stylesheet"
     />
-    <style>
+
+    <style tyle="text/css">
+      @font-face {
+        font-family: 'Godo';
+        font-style: normal;
+        font-weight: 400;
+        src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2')
+            format('woff2'),
+          url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff')
+            format('woff');
+      }
+
       html,
       body {
         font-size: 16px;
-        font-family: 'Noto Sans KR';
+        font-family: 'Godo', 'Noto Sans KR', sans-serif;
+
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -71,6 +83,7 @@
       gtag('config', 'G-EBLB82WNV6');
     </script>
     <!-- End Global tag for Google Analytics-->
+    <base href="/" />
   </head>
   <body>
     <div id="app"></div>

@@ -20,7 +20,6 @@ export async function fetchRecentPosts() {
     return posts;
   }
 }
-
 export async function fetchPopularPosts() {
   const response = await fetch(`${process.env.backAPI}/posts/popularPosts`);
   const { trial, posts } = await response.json();
@@ -38,11 +37,9 @@ export async function fetchSearchField(searchField) {
     },
     body: searchField,
   });
+  const data = await response.json();
 
-  const { trial, posts } = await response.json();
-  if (trial) {
-    return posts;
-  }
+  return data;
 }
 
 export async function postLogin(email, password) {
@@ -75,10 +72,7 @@ export async function postArticle(form) {
 }
 
 export async function fetchGoogleAnalytics() {
-  const result = await fetch(
-    'https://www.googleapis.com/analytics/v3/data/ga?access_token=ya29.A0ARrdaM9HJMgpaHKJnjuxtazKFWrQOs9BGQqG6zQxxkVN2-DnpNKX3wG3aFl29lEYKVtOSMnzJ9WND5mqbnRf1F9B_GZ9x6pgyOG7QsWiC54hloEwnl_x2M1RxV-ElexrCm4ZxengAZtgKzh45quLkznuxoEHwA&ids=ga%3A262553607&dimensions=ga%3Adate&metrics=ga%3A1dayUsers&sort=-ga%3A1dayUsers&start-date=30daysAgo&end-date=today'
-  );
-
+  const result = await fetch(`${process.env.backAPI}/ga`);
   const data = await result.json();
 
   return data;

@@ -1,10 +1,20 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div({
-  width: '90%',
-  margin: '0 auto',
+export const PostContainer = styled.div({
+  '@media only screen and (min-width: 768px)': {
+    margin: '2em auto',
+    width: '933px',
+    minHeight: '70vh',
+  },
+});
 
-  // minHeight: 'calc(100vh - 340px)',
+export const PageContainer = styled.div({
+  '@media only screen and (min-width: 768px)': {
+    margin: '2em auto',
+    paddingLeft: '100px',
+    width: '50%',
+    minHeight: '70vh',
+  },
 });
 
 export const List = styled.ul({

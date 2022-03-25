@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import FooterContainer from './FooterContainer';
+import AsideContainer from './AsideContainer';
 
 import { MemoryRouter } from 'react-router-dom';
 import { navList, navAddress } from '../../fixture/navList';
@@ -18,7 +18,7 @@ import { useDispatch } from 'react-redux';
     2. 검색창과 누적 방문자수를 잘 보여주는가
 */
 
-describe('FooterContainer', () => {
+describe('AsideContainer', () => {
   const dispatch = jest.fn();
   beforeEach(() => {
     useDispatch.mockImplementation(() => dispatch);
@@ -58,7 +58,7 @@ describe('FooterContainer', () => {
   });
 
   it('render recentPosts', () => {
-    const { getByText } = render(<FooterContainer />);
+    const { getByText } = render(<AsideContainer />);
 
     expect(dispatch).toBeCalled();
 
@@ -67,7 +67,7 @@ describe('FooterContainer', () => {
   });
 
   it('render popularPosts', () => {
-    const { getByText } = render(<FooterContainer />);
+    const { getByText } = render(<AsideContainer />);
 
     expect(dispatch).toBeCalled();
 

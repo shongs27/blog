@@ -15,13 +15,19 @@ const Item = styled.div({
   borderBottom: '1px solid rgb(230, 230, 230)',
   paddingTop: '30px',
   paddingBottom: '22px',
+
+  '& a': {
+    textDecoration: 'none',
+    color: 'black',
+    fontSize: '85%',
+  },
 });
 
-export default function PagesPosts({ articleTitle, pagesPosts }) {
+export default function PagesPosts({ articleTitle, pagesPosts = [] }) {
   return (
     <Article>
       <h2>{articleTitle}</h2>
-      {pagesPosts &&
+      {pagesPosts.length ? (
         pagesPosts.map(({ _id, title, description, category }) => {
           //excerpt 기능
           if (description.length > 200) {
@@ -37,7 +43,10 @@ export default function PagesPosts({ articleTitle, pagesPosts }) {
               <Link to={`/${category}/${_id}`}>더보기 &gt;</Link>
             </Item>
           );
-        })}
+        })
+      ) : (
+        <div>그런거 없어요</div>
+      )}
       <Outlet />
     </Article>
   );

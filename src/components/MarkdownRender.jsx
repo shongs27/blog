@@ -51,6 +51,7 @@ export default function MarkdownRender({ markdown }) {
                 padding: '2rem',
                 lineHeight: '1.5rem',
                 margin: '2rem auto',
+                whiteSpace: 'pre-wrap',
               }}
               {...props}
             />
