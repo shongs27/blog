@@ -7,7 +7,7 @@ const path = require('path');
 const port = 3000;
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
-app.use(cors({ origin: '*', credentials: true }));
+app.use(cors({ origin: process.env.origin, credentials: true }));
 
 app.use(express.text());
 app.use(express.json());
