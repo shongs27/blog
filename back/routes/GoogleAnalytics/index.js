@@ -103,7 +103,7 @@ async function main(
 
   // 원하는 데이터로 가공
   const result = {
-    realTimeUsers: realTimeReport.totals[0].metricValues[0].value || '0',
+    realTimeUsers: realTimeReport.totals[0].metricValues[0]?.value || '0',
     yesterdayActiveUsers: report.rows[0].metricValues[0].value,
     monthActiveUsers: String(
       report.rows.reduce(
@@ -121,6 +121,6 @@ async function main(
 //   console.error(err.message);
 //   process.exitCode = 1;
 // });
-main(...process.argv.slice(2));
+// main(...process.argv.slice(2));
 
 module.exports = main;
