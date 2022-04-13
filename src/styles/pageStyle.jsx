@@ -1,19 +1,35 @@
 import styled from '@emotion/styled';
 
+export const LinkPage = styled.a({
+  textDecoration: 'none',
+  color: '#bdc3c7',
+  fontStyle: 'italic',
+});
+
 export const PostContainer = styled.div({
+  margin: '2em auto',
+  minHeight: '70vh',
+
+  width: '95%',
+
+  //태블릿과 컴퓨터 화면
   '@media only screen and (min-width: 768px)': {
-    margin: '2em auto',
-    width: '933px',
-    minHeight: '70vh',
+    //933px
+    width: '60%',
   },
 });
 
 export const PageContainer = styled.div({
+  margin: '2em auto',
+
+  minHeight: '50vh',
+  width: '90%',
+
   '@media only screen and (min-width: 768px)': {
-    margin: '2em auto',
     paddingLeft: '100px',
-    width: '50%',
+
     minHeight: '70vh',
+    width: '50%',
   },
 });
 
@@ -23,6 +39,7 @@ export const List = styled.ul({
 });
 
 export const Item = styled.li({
+  //likes icon을 absolute로 붙이기 위해서
   position: 'relative',
 
   listStyle: 'none',

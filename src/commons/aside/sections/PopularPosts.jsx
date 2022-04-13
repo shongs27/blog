@@ -15,7 +15,7 @@ const Container = styled.div({
   boxSizing: 'border-box',
 });
 
-const Span = styled.span({
+const Likes = styled.span({
   position: 'absolute',
   right: '2px',
 });
@@ -30,10 +30,10 @@ export default function PopularPosts({ popularPosts = [] }) {
             <Link to={`/${category}/${_id}`}>
               {`<${category[0].toUpperCase() + category.slice(1)}> ${title} `}
 
-              <Span>
+              <Likes>
                 <FontAwesomeIcon icon={faThumbsUp} />
                 &nbsp; {`${likes}`}
-              </Span>
+              </Likes>
             </Link>
           </Item>
         ))}

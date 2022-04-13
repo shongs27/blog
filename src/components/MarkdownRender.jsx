@@ -39,6 +39,7 @@ export default function MarkdownRender({ markdown }) {
                 borderLeft: '.2rem solid',
                 backgroundColor: '#e5eaee',
                 marginLeft: 0,
+                paddingLeft: '1em',
               }}
               {...props}
             ></blockquote>
@@ -48,7 +49,7 @@ export default function MarkdownRender({ markdown }) {
             <pre
               style={{
                 backgroundColor: '#e5eaee',
-                padding: '2rem',
+                padding: '1rem',
                 lineHeight: '1.5rem',
                 margin: '2rem auto',
                 whiteSpace: 'pre-wrap',

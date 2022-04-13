@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
 
-const UserSchema = new Schema({
+const userSchema = new Schema({
   email: {
     type: String,
     trim: true,
@@ -22,24 +22,7 @@ const UserSchema = new Schema({
   },
 });
 
-// UserSchema.pre('save', function (next) {
-//   next();
-//   // if (this.isModified('password')) {
-//   //   bcrypt.genSalt(5, function (err, salted) {
-//   //     if (err) return next(err);
-
-//   //     bcrypt.hash(this.password, salted, function (err, hash) {
-//   //       if (err) return next(err);
-//   //       this.password = hash;
-//   //       next();
-//   //     });
-//   //   });
-//   // } else {
-//   //   return;
-//   // }
-// });
-
-UserSchema.methods.generateToken = function (cb) {
+userSchema.methods.generateToken = function (cb) {
   const token = jwt.sign(this._id.toString(), process.env.jwtKey);
   const hours = moment().add(2, 'hour').valueOf();
 
@@ -48,17 +31,9 @@ UserSchema.methods.generateToken = function (cb) {
 
   this.save((err, user) => {
     if (err) return cb(err);
+
     return cb(null, user);
   });
 };
 
-// UserSchema.statics.findByToken = function (token, cb) {
-//   //jwt복원
-//   jwt.verify(token, 'hongs', (err, decoded) => {
-//     User.findOne({ _id: decoded, token }, (err, user) => {
-//       if (err) return cb(err);
-//       cb(null, user);
-//     });
-//   });
-// };
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', userSchema);

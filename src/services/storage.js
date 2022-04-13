@@ -9,3 +9,19 @@ export function setItem(key, value) {
 export function removeItem(key) {
   return localStorage.removeItem(key);
 }
+
+export function isItem(key, value) {
+  const item = JSON.parse(getItem(key));
+
+  if (item) {
+    const isArrayValue = item.some((v) => v === value);
+
+    if (isArrayValue) {
+      return true;
+    }
+
+    return false;
+  }
+
+  return false;
+}

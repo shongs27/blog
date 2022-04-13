@@ -10,7 +10,7 @@ const Container = styled.div({
   boxSizing: 'border-box',
 });
 
-const SearchContainer = styled.div({
+const SearchSection = styled.div({
   marginBottom: '57px',
   '& a': {
     marginLeft: '5px',
@@ -20,24 +20,36 @@ const SearchContainer = styled.div({
   },
 });
 
+const Search = styled(SearchInput)({
+  '& a': {
+    fontSize: '1.4em',
+    color: '#0984e3',
+  },
+
+  '& input': {
+    width: '80%',
+    height: '2em',
+  },
+});
+
 export default function ExtraSection({
   handleChange,
   handleSubmit,
   searchField,
-  dailyActiveUsers,
+  activeUsers,
 }) {
   return (
     <Container>
-      <SearchContainer>
+      <SearchSection>
         <h3>검색</h3>
-        <SearchInput
+        <Search
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           searchField={searchField}
         />
-      </SearchContainer>
+      </SearchSection>
 
-      <AnalysticSection dailyActiveUsers={dailyActiveUsers} />
+      <AnalysticSection activeUsers={activeUsers} />
     </Container>
   );
 }

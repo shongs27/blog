@@ -8,8 +8,16 @@ import {
   postArticle,
   postLogin,
   fetchGoogleAnalytics,
+  patchLike,
+  patchUnlike,
+  fetchGuestBoard,
+  postThread,
+  postThreadLogin,
+  fetchBoardThread,
+  patchThread,
+  putThread,
 } from './services/api';
-import { setItem, removeItem } from './services/storage';
+import { setItem, removeItem, getItem, isItem } from './services/storage';
 
 export function setPagesPosts(category, pagePosts) {
   return {
@@ -163,7 +171,7 @@ export function registerPost(form) {
 
     if (trial) {
       message.info('글을 성공적으로 등록했습니다');
-      getPagesPosts(post.category);
+      dispatch(getPagesPosts(post.category));
     } else {
       message.fail('글 올리는걸 실패했습니다');
     }
@@ -178,17 +186,13 @@ export function changePostField(name, value) {
 }
 
 export function getGoogleAnalytics() {
-  return async (dispatch, getState) => {
-    const { trial, rows, totals } = await fetchGoogleAnalytics();
+  return async (dispatch) => {
+    const { trial, activeUsers } = await fetchGoogleAnalytics();
 
     if (!trial) {
-      return message.info('가져올 수 없었습니다');
+      return message.info('구글 애널리틱스 data를 가져올 수 없습니다');
     }
 
-    const activeUsers = {
-      yesterDayActiveUser: rows[0].metricValues[0].value,
-      oneMonthActiveUser: totals[0].metricValues[0].value,
-    };
     dispatch(setGoogleAnalytics(activeUsers));
   };
 }
@@ -197,5 +201,185 @@ export function setGoogleAnalytics(activeUsers) {
   return {
     type: 'setGoogleAnalytics',
     payload: { activeUsers },
+  };
+}
+
+export function upLike(postId) {
+  return async (dispatch) => {
+    const { trial, post } = await patchLike(postId);
+
+    if (!trial) {
+      return message.info('모종의 이유로 좋아요가 작동하지 않아요');
+    }
+
+    dispatch(setPostDetail(post));
+
+    const item = JSON.parse(getItem('likePostIDs'));
+    if (item) {
+      if (!isItem('likePostIDs', postId)) {
+        setItem('likePostIDs', JSON.stringify([...item, postId]));
+        dispatch(setLikePost([...item, postId]));
+        return;
+      }
+    }
+
+    setItem('likePostIDs', JSON.stringify([postId]));
+    dispatch(setLikePost([postId]));
+  };
+}
+
+export function unLike(postId) {
+  return async (dispatch) => {
+    const { trial, post } = await patchUnlike(postId);
+
+    if (!trial) {
+      return message.info('모종의 이유로 좋아요 취소가 작동하지 않아요');
+    }
+
+    dispatch(setPostDetail(post));
+
+    const filtered = JSON.parse(getItem('likePostIDs')).filter(
+      (value) => value !== postId
+    );
+    if (filtered.length) {
+      setItem('likePostIDs', JSON.stringify([...filtered]));
+      dispatch(setLikePost([...filtered]));
+    } else {
+      removeItem('likePostIDs');
+      dispatch(setLikePost());
+    }
+  };
+}
+
+export function setLikePost(likePost = []) {
+  return {
+    type: 'setLikePost',
+    payload: { likePost },
+  };
+}
+
+//////////////
+// 방명록
+//////////////
+
+export function setGuestBoard(guestBoard) {
+  return {
+    type: 'setGuestBoard',
+    payload: { guestBoard },
+  };
+}
+
+export function getGuestBoard() {
+  return async (dispatch) => {
+    const { trial, board } = await fetchGuestBoard();
+
+    if (!trial) {
+      message.info('서버에서 게시글들을 받아올 수 없습니다');
+    }
+
+    dispatch(setGuestBoard(board));
+  };
+}
+
+export function setBoardThread(thread) {
+  return {
+    type: 'setBoardThread',
+    payload: { thread },
+  };
+}
+
+export function getBoardThread(threadId) {
+  return async (dispatch) => {
+    const { trial, thread } = await fetchBoardThread(threadId);
+
+    if (!trial) {
+      message.info('서버에서 게시글을 받아올 수 없습니다');
+    }
+
+    dispatch(setBoardThread(thread));
+  };
+}
+
+export function registerThreadField() {
+  return async (dispatch, getState) => {
+    const {
+      guestBoard: { threadField },
+    } = getState();
+    const { trial, board } = await postThread(threadField);
+
+    if (!trial) {
+      return message.info('게시글 등록에 실패했습니다');
+    }
+
+    dispatch(setGuestBoard(board));
+  };
+}
+
+export function changeThread() {
+  return async (dispatch, getState) => {
+    const {
+      guestBoard: { threadField },
+    } = getState();
+    const { trial } = await patchThread(threadField);
+
+    if (!trial) {
+      return message.info('게시글 등록에 실패했습니다');
+    }
+
+    dispatch(getGuestBoard());
+  };
+}
+
+export function changeThreadField(name, value) {
+  return {
+    type: 'changeThreadField',
+    payload: { name, value },
+  };
+}
+
+export function setThreadField(thread) {
+  return {
+    type: 'setThreadField',
+    payload: { thread },
+  };
+}
+
+export function changeThreadLoginField(password) {
+  return {
+    type: 'changeThreadLoginField',
+    payload: { password },
+  };
+}
+
+export function requestThreadLogin(loginState, id) {
+  return async (dispatch, getState) => {
+    const {
+      guestBoard: {
+        loginField: { password },
+      },
+    } = getState();
+
+    const { trial, thread } = await postThreadLogin(loginState, id, password);
+
+    if (!trial) {
+      return message.info('게시글 등록에 실패했습니다');
+    }
+
+    dispatch(getGuestBoard());
+
+    if (loginState === 'modify') {
+      dispatch(setThreadField(thread));
+      dispatch(changeFormMode('modify'));
+      message.info('게시글을 성공적으로 수정했습니다');
+    } else if (loginState === 'eliminate') {
+      message.info('게시글을 성공적으로 삭제했습니다');
+    }
+  };
+}
+
+export function changeFormMode(formMode) {
+  return {
+    type: 'changeFormMode',
+    payload: { formMode },
   };
 }

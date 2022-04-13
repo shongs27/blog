@@ -4,11 +4,13 @@ import HomePage from './pages/HomePage';
 import JsPage from './pages/JsPage';
 import ReactPage from './pages/ReactPage';
 import ComputerPage from './pages/ComputerPage';
-// import AlgorithmPage from './pages/AlgorithmPage';
-// import SomethingPage from './pages/SomethingPage';
 import PostDetailContainer from './components/PostDetailContainer';
 import SearchPage from './pages/SearchPage';
 import LoginPage from './pages/LoginPage';
+import Resume from './pages/Resume';
+import GuestBoardPage from './pages/GuestBoardPage';
+import GuestBoardDetailPage from './pages/GuestBoardDetailPage';
+import GuestBoardModifyPage from './pages/GuestBoardModifyPage';
 
 import HeaderBar from './commons/top/HeaderBar';
 import Title from './commons/top/Title';
@@ -79,6 +81,43 @@ export default function PagesContainer() {
             </PageContainer>
           }
         />
+
+        <Route
+          path="/me"
+          element={
+            <PostContainer>
+              <Resume />
+            </PostContainer>
+          }
+        />
+
+        <Route
+          path="/board"
+          element={
+            <PageContainer>
+              <GuestBoardPage />
+            </PageContainer>
+          }
+        />
+
+        <Route
+          path="/board/:id"
+          element={
+            <PageContainer>
+              <GuestBoardDetailPage />
+            </PageContainer>
+          }
+        />
+
+        <Route
+          path="/board/:id/fix"
+          element={
+            <PageContainer>
+              <GuestBoardModifyPage />
+            </PageContainer>
+          }
+        />
+
         <Route
           path="/login"
           element={

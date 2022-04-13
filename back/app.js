@@ -7,9 +7,10 @@ const path = require('path');
 const port = 3000;
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
-app.use(cors({ origin: '*', credentials: true }));
-app.use(express.json());
+app.use(cors({ origin: process.env.origin, credentials: true }));
+
 app.use(express.text());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose
@@ -20,13 +21,11 @@ mongoose
   .then(() => console.log('몽고DB 가동 중'))
   .catch((e) => console.error('몽고DB 가동 실패', e));
 
-app.get('/', (req, res) => {
-  res.send('Hello world!');
-});
-
 app.use('/login', require('./routes/user'));
 app.use('/posts', require('./routes/post'));
 app.use('/ga', require('./routes/ga'));
+app.use('/like', require('./routes/like'));
+app.use('/board', require('./routes/board'));
 
 // app.use("/uploads", express.static("uploads"));
 

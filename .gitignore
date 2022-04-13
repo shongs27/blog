@@ -1,7 +1,5 @@
 node_modules
 
-.prettierignore
-
 back/.env
 
-distc
+dist

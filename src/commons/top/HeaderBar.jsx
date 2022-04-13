@@ -38,7 +38,7 @@ const BarSearch = styled(SearchInput)({
     width: '400px',
     height: '1.8rem',
 
-    padding: 0,
+    padding: '0 .4em',
     marginTop: '.2rem',
 
     outline: 'none',
@@ -47,7 +47,6 @@ const BarSearch = styled(SearchInput)({
   '& a': {
     marginLeft: '10px',
     color: 'inherit',
-    // verticalAlign: 'middle',
   },
 });
 
@@ -62,13 +61,14 @@ const Bar = styled.div({
   fontSize: '20px',
 
   '& span': {
+    display: 'inline-block',
+    marginTop: '3px',
     marginLeft: '10px',
-    lineHeight: '2.4rem',
 
     animation: `${slideIn} 1s cubic-bezier(0.25, 0.1, 0.25, 1)`,
 
     //x마크 크기
-    fontSize: '30px',
+    fontSize: '1.6em',
   },
 });
 
@@ -86,6 +86,11 @@ const BarLeft = styled.ul({
   '& li': {
     fontWeight: 'bold',
     margin: '.4em 1em 0 0',
+
+    '& a': {
+      color: 'inherit',
+      textDecoration: 'none',
+    },
 
     '& span': {
       marginLeft: '.5em',
@@ -128,7 +133,8 @@ export default function HeaderBar() {
   const dispatch = useDispatch();
   const searchField = useSelector((state) => state.search.searchField);
 
-  function handleClick() {
+  function handleSearch() {
+    window.scrollTo(0, 0);
     setSearchSelected((prev) => !prev);
   }
   function handleChange(searchField) {
@@ -147,7 +153,7 @@ export default function HeaderBar() {
           searchField={searchField}
         />
         <span>
-          <FontAwesomeIcon icon={faXmark} onClick={handleClick} />
+          <FontAwesomeIcon icon={faXmark} onClick={handleSearch} />
         </span>
       </Bar>
     );
@@ -156,25 +162,31 @@ export default function HeaderBar() {
   return (
     <>
       <BarLeft>
-        <li>
+        <li style={{ margin: '.4em 3em 0 1em' }}>
           <Link to="/">
             <FontAwesomeIcon icon={faHome} size="lg" />
           </Link>
         </li>
 
         <li>
-          <FontAwesomeIcon icon={faFile} size="lg" />
-          <span>소개</span>
+          <Link to="/me">
+            <FontAwesomeIcon icon={faFile} size="lg" />
+            <span>소개</span>
+          </Link>
         </li>
 
         <li>
-          <FontAwesomeIcon icon={faGamepad} size="lg" />
-          <span>게임</span>
+          <a href="mortyGame/index.html" target="_blank">
+            <FontAwesomeIcon icon={faGamepad} size="lg" />
+            <span>게임</span>
+          </a>
         </li>
 
         <li>
-          <FontAwesomeIcon icon={faChalkboardTeacher} size="lg" />
-          <span>방명록</span>
+          <Link to="/board">
+            <FontAwesomeIcon icon={faChalkboardTeacher} size="lg" />
+            <span>방명록</span>
+          </Link>
         </li>
       </BarLeft>
 
@@ -186,7 +198,7 @@ export default function HeaderBar() {
         <img src="img/hongs.jpg" alt="홍원배" width="35" height="35" />
 
         <span>
-          <FontAwesomeIcon icon={faSearch} size="lg" onClick={handleClick} />
+          <FontAwesomeIcon icon={faSearch} size="lg" onClick={handleSearch} />
         </span>
       </BarRight>
     </>

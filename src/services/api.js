@@ -64,6 +64,7 @@ export async function postArticle(form) {
       'Content-type': 'application/json',
     },
   });
+
   const { trial, post } = await response.json();
 
   if (trial) {
@@ -74,6 +75,75 @@ export async function postArticle(form) {
 export async function fetchGoogleAnalytics() {
   const result = await fetch(`${process.env.backAPI}/ga`);
   const data = await result.json();
+  return data;
+}
 
+export async function patchLike(postId) {
+  const result = await fetch(`${process.env.backAPI}/like/upLike`, {
+    method: 'PATCH',
+    body: postId,
+  });
+  const data = await result.json();
+  return data;
+}
+
+export async function patchUnlike(postId) {
+  const result = await fetch(`${process.env.backAPI}/like/unLike`, {
+    method: 'PATCH',
+    body: postId,
+  });
+  const data = await result.json();
+  return data;
+}
+
+export async function fetchGuestBoard() {
+  const result = await fetch(`${process.env.backAPI}/board`);
+  const data = await result.json();
+  return data;
+}
+
+export async function fetchBoardThread(threadId) {
+  const result = await fetch(`${process.env.backAPI}/board/${threadId}`);
+  const data = await result.json();
+  return data;
+}
+
+export async function postThread(thread) {
+  const result = await fetch(`${process.env.backAPI}/board`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(thread),
+  });
+  const data = await result.json();
+  return data;
+}
+
+export async function patchThread(thread) {
+  const result = await fetch(`${process.env.backAPI}/board`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(thread),
+  });
+  const data = await result.json();
+  return data;
+}
+
+export async function postThreadLogin(loginState, id, password) {
+  const result = await fetch(`${process.env.backAPI}/board/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      loginState,
+      id,
+      password,
+    }),
+  });
+  const data = await result.json();
   return data;
 }

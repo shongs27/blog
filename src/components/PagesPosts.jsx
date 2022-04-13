@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
@@ -45,9 +45,8 @@ export default function PagesPosts({ articleTitle, pagesPosts = [] }) {
           );
         })
       ) : (
-        <div>그런거 없어요</div>
+        <div>아직 글이 없습니다</div>
       )}
-      <Outlet />
     </Article>
   );
 }

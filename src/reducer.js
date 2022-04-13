@@ -1,9 +1,11 @@
 const initialState = {
   GA: {
-    todayActiveUser: '',
-    yesterDayActiveUser: '',
-    oneMonthActiveUser: '',
+    realTimeUsers: '',
+    yesterdayActiveUsers: '',
+    monthActiveUsers: '',
   },
+  post: '',
+  likePost: [],
   posts: {
     home: [],
     js: [],
@@ -25,8 +27,21 @@ const initialState = {
     accessToken: '',
   },
   page: { title: '', description: '' },
-  post: '',
   clicked: false,
+  guestBoard: {
+    formMode: false,
+    loginField: {
+      password: '',
+    },
+    threadField: {
+      title: '',
+      name: '',
+      password: '',
+      content: '',
+    },
+    board: [],
+    thread: { id: '', title: '', content: '' },
+  },
 };
 
 const reducer = {
@@ -137,6 +152,82 @@ const reducer = {
     return {
       ...state,
       GA: activeUsers,
+    };
+  },
+
+  setLikePost(state, { payload: { likePost } }) {
+    return {
+      ...state,
+      likePost,
+    };
+  },
+
+  setGuestBoard(state, { payload: { guestBoard } }) {
+    return {
+      ...state,
+      guestBoard: {
+        ...state.guestBoard,
+        board: guestBoard,
+      },
+    };
+  },
+
+  setBoardThread(state, { payload: { thread } }) {
+    return {
+      ...state,
+      guestBoard: {
+        ...state.guestBoard,
+        thread,
+      },
+    };
+  },
+
+  changeThreadField(state, { payload: { name, value } }) {
+    return {
+      ...state,
+      guestBoard: {
+        ...state.guestBoard,
+        threadField: {
+          ...state.guestBoard.threadField,
+          [name]: value,
+        },
+      },
+    };
+  },
+
+  setThreadField(state, { payload: { thread } }) {
+    return {
+      ...state,
+      guestBoard: {
+        ...state.guestBoard,
+        threadField: {
+          //패스워드만 비워두기
+          password: '',
+          ...thread,
+        },
+      },
+    };
+  },
+
+  changeThreadLoginField(state, { payload: { password } }) {
+    return {
+      ...state,
+      guestBoard: {
+        ...state.guestBoard,
+        loginField: {
+          password,
+        },
+      },
+    };
+  },
+
+  changeFormMode(state, { payload: { formMode } }) {
+    return {
+      ...state,
+      guestBoard: {
+        ...state.guestBoard,
+        formMode,
+      },
     };
   },
 };

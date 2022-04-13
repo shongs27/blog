@@ -1,18 +1,17 @@
 const mongoose = require('mongoose');
-const { post } = require('../routes/user');
 const Schema = mongoose.Schema;
 
-const PostSchema = new Schema(
+const postSchema = new Schema(
   {
+    title: String,
+    description: String,
+    category: String,
+    content: String,
     writer: {
       type: Schema.Types.ObjectId,
       ref: 'User',
       text: true,
     },
-    title: String,
-    description: String,
-    category: String,
-    content: String,
     likes: {
       type: Number,
       default: 0,
@@ -20,6 +19,7 @@ const PostSchema = new Schema(
   },
   { timestamps: true }
 );
-PostSchema.index({ '$**': 'text' });
 
-module.exports = mongoose.model('Post', PostSchema);
+postSchema.index({ '$**': 'text' });
+
+module.exports = mongoose.model('Post', postSchema);

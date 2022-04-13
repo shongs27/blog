@@ -30,7 +30,11 @@ export default function SearchInput({
         value={searchField}
       />
       <Link to="/search">
-        <FontAwesomeIcon icon={faSearch} onClick={handleSubmit} />
+        <FontAwesomeIcon
+          icon={faSearch}
+          onClick={handleSubmit}
+          transform="down-2"
+        />
       </Link>
     </div>
   );
