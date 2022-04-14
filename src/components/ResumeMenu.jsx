@@ -52,7 +52,7 @@ const fadeInOut = keyframes`
 const ClipboardPosition = styled.div(({ clicked }) => ({
   position: 'fixed',
   right: '5em',
-  bottom: '5em',
+  bottom: '3em',
 
   visibility: 'hidden',
   animation: clicked && `${fadeInOut} 3s`,

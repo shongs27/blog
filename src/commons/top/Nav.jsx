@@ -24,7 +24,7 @@ const Container = styled.div({
 
       '&:hover': {
         fontWeight: 'bold',
-        borderBottom: '1px solid blue',
+        borderBottom: '2px solid #95a5a6',
       },
     },
   },

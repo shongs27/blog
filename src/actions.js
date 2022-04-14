@@ -15,7 +15,6 @@ import {
   postThreadLogin,
   fetchBoardThread,
   patchThread,
-  putThread,
 } from './services/api';
 import { setItem, removeItem, getItem, isItem } from './services/storage';
 
@@ -213,6 +212,7 @@ export function upLike(postId) {
     }
 
     dispatch(setPostDetail(post));
+    dispatch(getFooterPosts());
 
     const item = JSON.parse(getItem('likePostIDs'));
     if (item) {
@@ -237,6 +237,7 @@ export function unLike(postId) {
     }
 
     dispatch(setPostDetail(post));
+    dispatch(getFooterPosts());
 
     const filtered = JSON.parse(getItem('likePostIDs')).filter(
       (value) => value !== postId

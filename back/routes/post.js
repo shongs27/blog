@@ -22,7 +22,7 @@ router.get('/:category/:id', (req, res) => {
 router.get('/popularPosts', (req, res) => {
   Post.find()
     .where('likes')
-    .gt(1)
+    .gte(1)
     .sort({ likes: -1 })
     .limit(5)
     .exec((err, posts) => {

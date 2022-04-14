@@ -19,7 +19,6 @@ router.patch('/', (req, res) => {
         { $set: { name, password: newPassword, title, content } },
         { new: true }
       ).exec((err) => {
-        console.log(newPassword);
         if (err) return res.status(400).send({ trial: false });
 
         res.status(200).send({ trial: true });

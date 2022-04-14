@@ -4,9 +4,9 @@
 
 [PR13] 블로그글 채우고 Style 꾸미기
 
-- 스크롤바에 따라 색깔 올라가기
+- 이력서 수정
+- markdown aside 즉 callout, 이미지 처리
 
-- [ ] 메뉴바에 색깔 다르게 넣기
 - [ ] 블로그 글 리얼로 채우고 이쁘게 꾸미기
 
 [PR14] 테스트 확인
@@ -15,6 +15,7 @@
 
 # 앞으로 할 일
 
+- 타이틀바에 모티게임 적용하기
 - 폼에 오류메시지 띄우기
 - https://jeonghwan-kim.github.io/dev/2022/03/29/react-form-and-formik.html#useform-%ED%9B%85%EC%9C%BC%EB%A1%9C-%EB%B6%84%EB%A6%AC
   옆에 링크

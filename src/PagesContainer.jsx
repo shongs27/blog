@@ -139,7 +139,7 @@ export default function PagesContainer() {
           path="*"
           element={
             <PageContainer>
-              <div>Not Found Page</div>
+              <div>준비중인 페이지 입니다</div>
             </PageContainer>
           }
         />
