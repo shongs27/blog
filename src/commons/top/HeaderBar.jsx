@@ -11,6 +11,7 @@ import {
 import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
+
 import { useState } from 'react';
 
 import SearchInput from '../aside/sections/SearchInput';
@@ -18,6 +19,18 @@ import { keyframes } from '@emotion/react';
 
 import { changeSearchField, getSearchField } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
+
+const ProgressBar = styled.div(({ scroll }) => ({
+  background: `linear-gradient(to right, #333 ${scroll}%, transparent 0)`,
+  backgroundRepeat: 'no-repeat',
+
+  width: '100%',
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  height: '4px',
+  zIndex: 2,
+}));
 
 const slideIn = keyframes`
   from { 
@@ -132,6 +145,7 @@ export default function HeaderBar() {
 
   const dispatch = useDispatch();
   const searchField = useSelector((state) => state.search.searchField);
+  const scroll = useSelector((state) => state.scrollY);
 
   function handleSearch() {
     window.scrollTo(0, 0);
@@ -161,6 +175,7 @@ export default function HeaderBar() {
 
   return (
     <>
+      <ProgressBar scroll={scroll} />
       <BarLeft>
         <li style={{ margin: '.4em 3em 0 1em' }}>
           <Link to="/">

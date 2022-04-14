@@ -11,6 +11,7 @@ const Container = styled.div({
   borderRadius: '30px',
   border: '3px solid #eee',
   outline: '1px solid #aaa',
+  zIndex: 1,
 });
 
 export default function ClipboardGuide() {

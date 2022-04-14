@@ -34,6 +34,7 @@ export default function App() {
         ((element['scrollHeight'] || body['scrollHeight']) -
           element.clientHeight)) *
       100;
+
     dispatch(changeScrollY(scroll));
   }
 
