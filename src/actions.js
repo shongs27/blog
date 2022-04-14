@@ -383,3 +383,10 @@ export function changeFormMode(formMode) {
     payload: { formMode },
   };
 }
+
+export function changeScrollY(scrollY) {
+  return {
+    type: 'changeScrollY',
+    payload: { scrollY },
+  };
+}

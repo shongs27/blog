@@ -1,4 +1,5 @@
 const initialState = {
+  scrollY: 0,
   GA: {
     realTimeUsers: '',
     yesterdayActiveUsers: '',
@@ -228,6 +229,13 @@ const reducer = {
         ...state.guestBoard,
         formMode,
       },
+    };
+  },
+
+  changeScrollY(state, { payload: { scrollY } }) {
+    return {
+      ...state,
+      scrollY,
     };
   },
 };

@@ -1,7 +1,12 @@
 import PagesContainer from './PagesContainer';
 
 import { useDispatch } from 'react-redux';
-import { getGoogleAnalytics, setAccessToken, setLikePost } from './actions';
+import {
+  changeScrollY,
+  getGoogleAnalytics,
+  setAccessToken,
+  setLikePost,
+} from './actions';
 
 import { getItem } from './services/storage';
 import { useEffect } from 'react';
@@ -20,8 +25,25 @@ export default function App() {
     dispatch(setLikePost(likePost));
   }
 
+  function handleScroll() {
+    const element = document.querySelector('html');
+    const body = document.querySelector('body');
+
+    const scroll =
+      ((element['scrollTop'] || body['scrollTop']) /
+        ((element['scrollHeight'] || body['scrollHeight']) -
+          element.clientHeight)) *
+      100;
+    dispatch(changeScrollY(scroll));
+  }
+
   useEffect(() => {
     dispatch(getGoogleAnalytics());
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return <PagesContainer />;
