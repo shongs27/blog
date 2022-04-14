@@ -59,31 +59,61 @@ async function main(
   // [END analyticsdata_json_credentials_initialize]
 
   // Runs a simple report.
-  async function runReport() {
-    // [START analyticsdata_json_credentials_run_report]
 
-    const [response] = await analyticsDataClient.runReport({
+  async function runRealtimeReport() {
+    const [response] = await analyticsDataClient.runRealtimeReport({
       property: `properties/${propertyId}`,
-      dimensions: [{ name: 'date' }],
-      metrics: [{ name: 'active1DayUsers' }],
-      dateRanges: [{ startDate: '30daysAgo', endDate: 'today' }],
-      orderBys: [
-        { metric: { metricName: 'active1DayUsers' }, desc: true },
-        { dimension: { orderType: 'NUMERIC', dimensionName: 'date' } },
-      ],
-      metricAggregations: ['TOTAL'],
-    });
-    // [END analyticsdata_json_credentials_run_report]
 
-    // console.log('Report result:');
-    // response.rows.forEach((row) => {
-    //   console.log(row.dimensionValues[0], row.metricValues[0]);
-    // });
+      dimensions: [{ name: 'country' }],
+      metrics: [{ name: 'activeUsers' }],
+      metricAggregations: ['TOTAL'],
+      keepEmptyRows: true,
+    });
 
     return response;
   }
 
-  return await runReport();
+  async function runReport() {
+    // [START analyticsdata_json_credentials_run_report]
+    const [response] = await analyticsDataClient.runReport({
+      property: `properties/${propertyId}`,
+      dimensions: [{ name: 'date' }],
+      metrics: [{ name: 'activeUsers' }],
+      dateRanges: [{ startDate: '30daysAgo', endDate: 'yesterday' }],
+      orderBys: [
+        {
+          dimension: { orderType: 'NUMERIC', dimensionName: 'date' },
+          desc: true,
+        },
+        { metric: { metricName: 'activeUsers' }, desc: false },
+      ],
+      keepEmptyRows: true,
+      metricAggregations: ['TOTAL'],
+    });
+    // [END analyticsdata_json_credentials_run_report]
+
+    return response;
+  }
+
+  // 두 API에서 데이터 받아오기
+  const [realTimeReport, report] = await Promise.all([
+    runRealtimeReport(),
+    runReport(),
+  ]);
+
+  // 원하는 데이터로 가공
+  const result = {
+    realTimeUsers: realTimeReport.totals[0].metricValues[0]?.value || '0',
+    yesterdayActiveUsers: report.rows[0].metricValues[0].value,
+    monthActiveUsers: String(
+      report.rows.reduce(
+        (acc, cur) => acc + Number(cur.metricValues[0].value),
+        0
+      )
+    ),
+    etc: report.totals[0].metricValues[0].value,
+  };
+  return result;
   // [END analyticsdata_json_credentials_quickstart]
 }
 
@@ -91,6 +121,6 @@ async function main(
 //   console.error(err.message);
 //   process.exitCode = 1;
 // });
-main(...process.argv.slice(2));
+// main(...process.argv.slice(2));
 
 module.exports = main;

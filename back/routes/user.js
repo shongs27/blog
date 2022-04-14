@@ -19,7 +19,6 @@ router.post('/', (req, res) => {
         // res.cookie('accessToken', user.token).status(200).json({ try: true });
         //   .json({ try: true, userId: user._id });
       });
-
       //패스워드가 달라도 실패
     } else return res.json({ trial: false, err });
   });
