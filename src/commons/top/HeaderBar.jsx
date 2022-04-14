@@ -21,7 +21,7 @@ import { changeSearchField, getSearchField } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const ProgressBar = styled.div(({ scroll }) => ({
-  background: `linear-gradient(to right, #333 ${scroll}%, transparent 0)`,
+  background: `linear-gradient(to right, rgb(85,85,85) ${scroll}%, transparent 0)`,
   backgroundRepeat: 'no-repeat',
 
   width: '100%',
@@ -29,7 +29,7 @@ const ProgressBar = styled.div(({ scroll }) => ({
   top: 0,
   left: 0,
   height: '4px',
-  zIndex: 2,
+  zIndex: 99999,
 }));
 
 const slideIn = keyframes`

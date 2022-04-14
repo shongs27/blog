@@ -28,7 +28,6 @@ const initialState = {
     accessToken: '',
   },
   page: { title: '', description: '' },
-  clicked: false,
   guestBoard: {
     formMode: false,
     loginField: {
