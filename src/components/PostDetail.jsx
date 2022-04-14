@@ -13,6 +13,10 @@ const Likes = styled.button({
   '& span': {
     marginLeft: '5px',
   },
+
+  '&:hover': {
+    cursor: 'pointer',
+  },
 });
 
 export default function PostDetail({
@@ -24,6 +28,7 @@ export default function PostDetail({
   const { _id, writer, title, description, category, content } = postDetail;
 
   const LikePostBoolean = likePost.some((post) => post === _id);
+
   return (
     <>
       <MarkdownRender markdown={content} />
