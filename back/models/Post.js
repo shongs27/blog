@@ -10,7 +10,6 @@ const postSchema = new Schema(
     writer: {
       type: Schema.Types.ObjectId,
       ref: 'User',
-      text: true,
     },
     likes: {
       type: Number,
@@ -20,6 +19,11 @@ const postSchema = new Schema(
   { timestamps: true }
 );
 
-postSchema.index({ '$**': 'text' });
+postSchema.index({
+  title: 'text',
+  description: 'text',
+  category: 'text',
+  content: 'text',
+});
 
 module.exports = mongoose.model('Post', postSchema);

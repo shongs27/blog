@@ -40,7 +40,7 @@ const initialState = {
       content: '',
     },
     board: [],
-    thread: { id: '', title: '', content: '' },
+    thread: { id: '', name: '', title: '', content: '' },
   },
 };
 

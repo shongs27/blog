@@ -3,7 +3,6 @@ const router = express.Router();
 const Post = require('../models/Post');
 
 router.post('/search', (req, res) => {
-  //수정
   Post.find({ $text: { $search: req.body } }).exec((err, posts) => {
     if (!posts.length) return res.json({ trial: false });
 

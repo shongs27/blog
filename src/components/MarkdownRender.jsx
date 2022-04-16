@@ -32,7 +32,6 @@ export default function MarkdownRender({ markdown }) {
         children={markdown}
         remarkPlugins={[remarkGfm]}
         components={{
-          // Map `h1` (`# heading`) to use `h2`s.
           blockquote: ({ ...props }) => (
             <blockquote
               style={{
@@ -44,7 +43,6 @@ export default function MarkdownRender({ markdown }) {
               {...props}
             ></blockquote>
           ),
-          // Rewrite `em`s (`*like so*`) to `i` with a red foreground color.
           code: ({ node, ...props }) => (
             <pre
               style={{
