@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import HomePage from './HomePage';
+import AllPage from './AllPage';
 
 import { MemoryRouter } from 'react-router-dom';
 
@@ -13,12 +13,12 @@ jest.mock('react-redux');
   페이지가 이동한다 => 링크로 이동은 테스트하지 않는다
 
 */
-describe('HomePage', () => {
+describe('AllPage', () => {
   const dispatch = jest.fn();
   useSelector.mockImplementation((selector) =>
     selector({
       pages: {
-        home: [
+        All: [
           {
             id: 1,
             title: 'props에 대하여',
@@ -33,7 +33,7 @@ describe('HomePage', () => {
   it('페이지가 렌더링 되면 메인페이지 데이터를 받아온다', () => {
     const { getByText } = render(
       <MemoryRouter>
-        <HomePage />
+        <AllPage />
       </MemoryRouter>
     );
 

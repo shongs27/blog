@@ -73,7 +73,15 @@ export default function GuestBoardDetailPage() {
             </div>
             <span>작성자 : {name}</span>
           </div>
-          <div style={{ marginTop: '2em', minHeight: '12em' }}>
+          <div
+            style={{
+              margin: '3em 0',
+              padding: '40px',
+              minHeight: '12em',
+              backgroundColor: '#dfe5ed',
+              borderRadius: '30px',
+            }}
+          >
             <span>{content}</span>
           </div>
         </Container>

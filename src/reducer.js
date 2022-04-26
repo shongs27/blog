@@ -8,7 +8,7 @@ const initialState = {
   post: '',
   likePost: [],
   posts: {
-    home: [],
+    all: [],
     js: [],
     react: [],
     computer: [],

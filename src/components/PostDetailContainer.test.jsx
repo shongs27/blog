@@ -33,7 +33,7 @@ describe('PostDetailContainer', () => {
       id: 4,
       title: '배열의 반복',
       content: 'for뿐만아니라 forEach, map을 통하여 배열의 반복을',
-      category: 'home',
+      category: 'all',
       like: 4,
     }));
 

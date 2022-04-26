@@ -41,7 +41,7 @@ router.get('/recentPosts', (req, res) => {
     });
 });
 
-router.get('/home', (req, res) => {
+router.get('/all', (req, res) => {
   Post.find()
     .sort({ _id: -1 })
     .exec((err, posts) => {

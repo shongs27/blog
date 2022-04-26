@@ -23,7 +23,12 @@ const SectionsContainer = styled.div({
   margin: '0 auto',
   minHeight: '300px',
   padding: '57px 34px 24px',
-  // height: 'calc(100% - 80px)',
+
+  '&::after': {
+    content: "''",
+    display: 'block',
+    clear: 'both',
+  },
 
   // '@media screen and (max-width: 1199px)': {
   //   paddingLeft: '34px',

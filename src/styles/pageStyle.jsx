@@ -20,16 +20,13 @@ export const PostContainer = styled.div({
 });
 
 export const PageContainer = styled.div({
+  width: '90%',
+  minHeight: '70vh',
   margin: '2em auto',
 
-  minHeight: '50vh',
-  width: '90%',
-
   '@media only screen and (min-width: 768px)': {
-    paddingLeft: '100px',
-
-    minHeight: '70vh',
     width: '50%',
+    paddingLeft: '100px',
   },
 });
 
