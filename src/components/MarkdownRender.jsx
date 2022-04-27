@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeTranslateAside from '../rehypeTranslateAside';
 
 const MarkDownStyle = styled.div({
   fontSize: '1rem',
@@ -31,6 +32,7 @@ export default function MarkdownRender({ markdown }) {
       <ReactMarkdown
         children={markdown}
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeTranslateAside]}
         components={{
           blockquote: ({ ...props }) => (
             <blockquote
@@ -54,6 +56,17 @@ export default function MarkdownRender({ markdown }) {
               }}
               {...props}
             />
+          ),
+          aside: ({ ...props }) => (
+            <blockquote
+              style={{
+                borderLeft: '.2rem solid',
+                backgroundColor: '#74b9ff',
+                marginLeft: 0,
+                paddingLeft: '1em',
+              }}
+              {...props}
+            ></blockquote>
           ),
         }}
       />
