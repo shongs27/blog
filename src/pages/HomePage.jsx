@@ -14,7 +14,7 @@ const Greetings = styled.div({
   marginLeft: '7em',
 
   '& h1': {
-    lineHeight: '2em',
+    lineHeight: '1.6em',
   },
 
   '& button': {
@@ -85,9 +85,9 @@ export default function HomePage() {
       </Greetings>
 
       <Image>
-        <a href="https://github.com/shongs27" target="_blank">
+        <a href="https://github.com/shongs27" target="_blank" title="깃허브">
           <img
-            src="img/하하하.png"
+            src="https://avatars.githubusercontent.com/u/55541745?v=4"
             alt="릭앤모티 모티"
             width="380px"
             height="380px"

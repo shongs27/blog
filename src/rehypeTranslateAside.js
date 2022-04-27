@@ -25,6 +25,7 @@ export default function () {
           const element = h('aside', context);
           element.position = position;
 
+          //부모가 없으면 tree 객체 전체가 선택됨
           parent.children[index] = element;
         }
       }

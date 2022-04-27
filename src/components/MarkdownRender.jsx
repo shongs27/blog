@@ -43,7 +43,7 @@ export default function MarkdownRender({ markdown }) {
                 paddingLeft: '1em',
               }}
               {...props}
-            ></blockquote>
+            />
           ),
           code: ({ node, ...props }) => (
             <pre
@@ -66,7 +66,7 @@ export default function MarkdownRender({ markdown }) {
                 paddingLeft: '1em',
               }}
               {...props}
-            ></blockquote>
+            />
           ),
         }}
       />
