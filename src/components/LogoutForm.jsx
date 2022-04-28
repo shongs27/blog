@@ -1,7 +1,8 @@
+import { getKeyThenIncreaseKey } from 'antd/lib/message';
 import { useSelector } from 'react-redux';
 
 export default function LogoutForm({
-  form: { userId, title, description },
+  form: { userId, title, description, category = 'js' },
   handleChange,
   handleLogout,
   handleUpload,
@@ -17,27 +18,28 @@ export default function LogoutForm({
   function onSubmit(e) {
     e.preventDefault();
 
-    const category = e.target[2].value;
-    const file = e.target[3].files[0];
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('category', category);
 
     const reader = new FileReader();
     reader.onload = function () {
-      const data = {
-        writer: userId,
-        title,
-        description,
-        category,
-        content: reader.result,
-      };
-
-      handleUpload(data);
+      formData.append('md', this.result);
+      handleUpload(formData);
     };
-    reader.readAsText(file);
 
-    // const formData = new FormData();
-    // formData.append('category', e.target[0].value);
-    // formData.append('file', e.target[1].files[0]);
-    // handleUpload(formData);
+    const files = e.target[3].files;
+    let i = 0;
+    while (i < files.length) {
+      var file = files[i];
+      if (/(jpg|png)/.test(file.type)) {
+        formData.append('image', file);
+      } else {
+        reader.readAsText(file);
+      }
+      i++;
+    }
   }
 
   return (
@@ -75,7 +77,12 @@ export default function LogoutForm({
 
           <div className="category">
             <label htmlFor="select-category">카테고리</label>
-            <select name="category" id="select-category">
+            <select
+              name="category"
+              id="select-category"
+              onChange={onChange}
+              value={category}
+            >
               <option value="js">자바스크립트</option>
               <option value="react">리액트</option>
               <option value="computer">CS</option>
@@ -85,7 +92,7 @@ export default function LogoutForm({
           {/* react-dropzone으로 바꾸기 */}
           <div className="file">
             <label htmlFor="input-file">파일</label>
-            <input type="file" name="file" id="input-file" />
+            <input type="file" name="file" id="input-file" multiple />
           </div>
 
           <button type="submit">제출</button>

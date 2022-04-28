@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
 const path = require('path');
+const multer = require('multer');
 
 const port = 3000;
 require('dotenv').config({ path: path.join(__dirname, '.env') });

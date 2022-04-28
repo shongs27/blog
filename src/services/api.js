@@ -56,13 +56,13 @@ export async function postLogin(email, password) {
   if (trial) return { userId, accessToken };
 }
 
-export async function postArticle(form) {
+export async function postArticle(formData) {
   const response = await fetch(`${process.env.backAPI}/posts`, {
     method: 'POST',
-    body: JSON.stringify(form),
-    headers: {
-      'Content-type': 'application/json',
-    },
+    body: formData,
+    // headers: {
+    //   'Content-type': 'multipart/form-data',
+    // },
   });
 
   const { trial, post } = await response.json();

@@ -27,7 +27,7 @@ const initialState = {
     userId: '',
     accessToken: '',
   },
-  page: { title: '', description: '' },
+  page: { title: '', description: '', category: '' },
   guestBoard: {
     formMode: false,
     loginField: {

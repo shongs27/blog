@@ -7,6 +7,10 @@ const postSchema = new Schema(
     description: String,
     category: String,
     content: String,
+    image: {
+      data: Buffer,
+      contentType: String,
+    },
     writer: {
       type: Schema.Types.ObjectId,
       ref: 'User',

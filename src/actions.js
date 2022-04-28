@@ -165,7 +165,7 @@ export function logout() {
 }
 
 export function registerPost(form) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     const { trial, post } = await postArticle(form);
 
     if (trial) {
