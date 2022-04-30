@@ -28,7 +28,7 @@ export default function App() {
   function handleScroll() {
     const element = document.querySelector('html');
     const body = document.querySelector('body');
-
+    //
     const scroll =
       ((element['scrollTop'] || body['scrollTop']) /
         ((element['scrollHeight'] || body['scrollHeight']) -
