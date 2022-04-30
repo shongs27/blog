@@ -19,7 +19,6 @@ const upload = multer({ storage });
 //생성
 router.post('/', upload.single('image'), (req, res) => {
   const { title, description, category, md } = req.body;
-
   const requestPost = {
     title,
     description,
@@ -43,7 +42,7 @@ router.post('/', upload.single('image'), (req, res) => {
 
 router.post('/search', (req, res) => {
   Post.find({ $text: { $search: req.body } }).exec((err, posts) => {
-    if (!posts.length) return res.json({ trial: false });
+    if (err) return res.status(400).json({ trial: false });
 
     res.status(200).json({ trial: true, posts });
   });
