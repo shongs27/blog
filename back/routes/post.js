@@ -4,7 +4,13 @@ const Post = require('../models/Post');
 
 const multer = require('multer');
 
-const upload = multer({ storage: multer.memoryStorage() }).single('image');
+const storage = multer.memoryStorage({
+  filename: function (req, file, cb) {
+    cb(null, originalname);
+  },
+});
+
+const upload = multer({ storage }).array('image');
 
 //생성
 router.post('/', function (req, res) {
@@ -14,16 +20,20 @@ router.post('/', function (req, res) {
     } else if (err) {
       return res.status(400).send({ trial: false, err });
     }
+
     const { title, description, category, md } = req.body;
+    const images = req.files.map((image) => ({
+      data: image.buffer,
+      contentType: image.mimetype,
+      filename: image.originalname.replace(/.(png|jpg)/, ''),
+    }));
+
     const requestPost = {
       title,
       description,
       category,
       content: md,
-      image: {
-        data: req.file.buffer,
-        contentType: req.file.mimetype,
-      },
+      images,
     };
 
     const post = new Post(requestPost);

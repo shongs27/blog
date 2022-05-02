@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeTranslateAside from '../rehypeTranslateAside';
@@ -27,7 +26,7 @@ const MarkDownStyle = styled.div({
 // > 장강은 도도하게 흐른다
 // `;
 
-export default function MarkdownRender({ markdown, image }) {
+export default function MarkdownRender({ markdown, images }) {
   function arrayBufferToBase64(buffer) {
     var binary = '';
     var bytes = new Uint8Array(buffer);
@@ -79,17 +78,26 @@ export default function MarkdownRender({ markdown, image }) {
               {...props}
             />
           ),
-          img: ({ ...props }) => (
-            <div>
-              <img
-                src={`data:${image.contentType};base64,${arrayBufferToBase64(
-                  image.data.data
-                )}`}
-                style={{ textAlign: 'center' }}
-                height="300"
-              />
-            </div>
-          ),
+          img: ({ alt = '', ...props }) => {
+            let correctImage;
+            images.forEach((image) => {
+              if (image.filename === alt) {
+                correctImage = image;
+              }
+            });
+
+            return (
+              <div>
+                <img
+                  src={`data:${
+                    correctImage?.contentType
+                  };base64,${arrayBufferToBase64(correctImage?.data.data)}`}
+                  style={{ textAlign: 'center' }}
+                  height="300"
+                />
+              </div>
+            );
+          },
         }}
       />
     </MarkDownStyle>

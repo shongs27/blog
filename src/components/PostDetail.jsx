@@ -25,16 +25,15 @@ export default function PostDetail({
   likePost = [],
   handleClick,
 }) {
-  const { _id, writer, title, description, category, content, image } =
-    postDetail;
+  const { _id, title, description, category, content, images } = postDetail;
 
-  const LikePostBoolean = likePost.some((post) => post === _id);
+  const likedPost = likePost.some((post) => post === _id);
 
   return (
     <>
-      <MarkdownRender markdown={content} image={image} />
+      <MarkdownRender markdown={content} images={images} />
       <Likes onClick={() => handleClick(_id)}>
-        {LikePostBoolean ? (
+        {likedPost ? (
           <FontAwesomeIcon icon={faHeartCircleCheck} />
         ) : (
           <FontAwesomeIcon icon={faHeart} />

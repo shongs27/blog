@@ -7,13 +7,9 @@ const postSchema = new Schema(
     description: String,
     category: String,
     content: String,
-    image: {
-      data: Buffer,
-      contentType: String,
-    },
-    writer: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
+    images: {
+      type: [{ data: Buffer, contentType: String, filename: String }],
+      default: undefined,
     },
     likes: {
       type: Number,
