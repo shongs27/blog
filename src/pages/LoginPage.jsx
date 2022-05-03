@@ -18,8 +18,7 @@ export default function LoginPage() {
   const dispatch = useDispatch();
   const loginField = useSelector((state) => state.login.loginField);
   const accessToken = useSelector((state) => state.login.accessToken);
-  const userId = useSelector((state) => state.login.userId);
-  const { title, description } = useSelector((state) => state.page);
+  const { title, description, category } = useSelector((state) => state.page);
 
   function handleLoginChange(name, value) {
     dispatch(changeLoginField(name, value));
@@ -51,7 +50,7 @@ export default function LoginPage() {
         />
       ) : (
         <LogoutForm
-          form={{ userId, title, description }}
+          form={{ title, description, category }}
           handleChange={handlePostChange}
           handleLogout={handleLogout}
           handleUpload={handleUpload}

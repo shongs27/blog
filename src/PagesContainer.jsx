@@ -12,6 +12,7 @@ import Resume from './pages/Resume';
 import GuestBoardPage from './pages/GuestBoardPage';
 import GuestBoardDetailPage from './pages/GuestBoardDetailPage';
 import GuestBoardModifyPage from './pages/GuestBoardModifyPage';
+import TILPage from './pages/TILPage';
 
 import HeaderBar from './commons/top/HeaderBar';
 import Title from './commons/top/Title';
@@ -62,6 +63,15 @@ export default function PagesContainer() {
           element={
             <PageContainer>
               <ComputerPage />
+            </PageContainer>
+          }
+        />
+
+        <Route
+          path="/TIL"
+          element={
+            <PageContainer>
+              <TILPage />
             </PageContainer>
           }
         />

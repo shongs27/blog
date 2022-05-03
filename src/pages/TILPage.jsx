@@ -7,15 +7,13 @@ import { getPagesPosts } from '@actions';
 
 import { navListPageName } from '@fixture/nav';
 
-export default function ThingsPage() {
+export default function TILPage() {
   const dispatch = useDispatch();
-  const thingsPosts = useSelector((state) => state.posts.things);
+  const TILPosts = useSelector((state) => state.posts.TIL);
 
   useEffect(() => {
-    dispatch(getPagesPosts('things'));
+    dispatch(getPagesPosts('TIL'));
   }, []);
 
-  return (
-    <PagesPosts articleTitle={navListPageName[5]} pagesPosts={thingsPosts} />
-  );
+  return <PagesPosts articleTitle={navListPageName[5]} pagesPosts={TILPosts} />;
 }

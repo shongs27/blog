@@ -1,8 +1,7 @@
-import { getKeyThenIncreaseKey } from 'antd/lib/message';
-import { useSelector } from 'react-redux';
+import { navAddress, navList } from '../../fixture/nav';
 
 export default function LogoutForm({
-  form: { userId, title, description, category = 'js' },
+  form: { title, description, category },
   handleChange,
   handleLogout,
   handleUpload,
@@ -83,9 +82,11 @@ export default function LogoutForm({
               onChange={onChange}
               value={category}
             >
-              <option value="js">자바스크립트</option>
-              <option value="react">리액트</option>
-              <option value="computer">CS</option>
+              {navList.map((nav, index) => (
+                <option key={`category-${index}`} value={navAddress[index]}>
+                  {nav}
+                </option>
+              ))}
             </select>
           </div>
 

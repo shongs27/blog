@@ -12,6 +12,7 @@ const initialState = {
     js: [],
     react: [],
     computer: [],
+    TIL: [],
     recentPosts: [],
     popularPosts: [],
   },
@@ -27,7 +28,7 @@ const initialState = {
     userId: '',
     accessToken: '',
   },
-  page: { title: '', description: '', category: '' },
+  page: { title: '', description: '', category: 'js' },
   guestBoard: {
     formMode: false,
     loginField: {

@@ -36,7 +36,7 @@ export default function Nav() {
       {navList.map((navName, i) => (
         <ul key={i}>
           <li>
-            <Link to={navAddress[i]}>{navName}</Link>
+            <Link to={`/${navAddress[i]}`}>{navName}</Link>
           </li>
         </ul>
       ))}
